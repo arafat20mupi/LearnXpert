@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.hero-bg-img{
+    background:rgb(0,0, 0, 0.5) url('../public/hero-bg.svg');
+    background-position: center;
+    background-size: cover;
+    height: 80vh;
+    background-blend-mode: darken;
+}
