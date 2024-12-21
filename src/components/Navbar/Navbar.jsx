@@ -25,7 +25,7 @@ const Navbar = () => {
           >
             Gallery
           </Link>
-          <Link className="px-3 hover:text-slate-600 cursor-pointer">
+          <Link to="/result" className="px-3 hover:text-slate-600 cursor-pointer">
             Result
           </Link>
           <Link className="px-3 hover:text-slate-600 cursor-pointer">
