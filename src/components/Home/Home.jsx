@@ -2,13 +2,23 @@ import React from "react";
 import Hero from "./Hero/Hero";
 import TopStudent from "./TopStudent/TopStudent";
 import About from "./About/About";
+import News from "./News/News";
+import Faq from "../Faq/Faq";
+import Contact from "../Contact/Contact";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
   return (
     <div>
       <Hero />
-      <TopStudent />
-      <About />
+      <div className=" px-7 md:px-20 ">
+        <TopStudent />
+        <About />
+        <News />
+        <Faq />
+        <Contact />
+      </div>
+      <Footer />
     </div>
   );
 };
