@@ -31,13 +31,18 @@ const Navbar = () => {
           <Link className="px-3 hover:text-slate-600 cursor-pointer">
             Admission
           </Link>
-          <Link className="px-3 hover:text-slate-600 cursor-pointer">Quiz</Link>
+          <Link to="/quiz" className="px-3 hover:text-slate-600 cursor-pointer">Quiz</Link>
           <Link className="px-3 hover:text-slate-600 cursor-pointer hidden md:block">
-            <FaCircleUser className="text-2xl" />
+            <Link to="/login">
+              <FaCircleUser className="text-2xl" />
+            </Link>
+            
           </Link>
         </ul>
         <div className="flex items-center space-x-6 md:hidden">
-          <FaCircleUser className="text-2xl" />
+        <Link to="/login">
+              <FaCircleUser className="text-2xl" />
+        </Link>
           <LuMenu onClick={() => setisOpen(!isOpen)} className="text-2xl" />
         </div>
       </nav>
