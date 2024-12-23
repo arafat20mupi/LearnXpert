@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Gallery from "../Pages/Gallery/Gallery";
 import Home from "../components/Home/Home";
-import Result from "../components/Result/Result";
+import Result from "../Pages/Result/Result";
 
 const router = createBrowserRouter([
   {
@@ -14,11 +14,11 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "gallery",
+        path: "/gallery",
         element: <Gallery />,
       },
       {
-        path: "result",
+        path: "/result",
         element: <Result />
       }
     ],

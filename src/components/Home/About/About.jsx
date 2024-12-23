@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div className="my-32 px-7 md:px-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-32">
+        <div className="my-32 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-32">
             {/* Text Section */}
             <div className="space-y-3">
                 <h1 className="text-2xl left-5 md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 relative mb-6">
