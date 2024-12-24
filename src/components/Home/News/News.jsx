@@ -78,7 +78,7 @@ const News = () => {
               <div className="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
                 {news.title}
               </div>
-              <div className="absolute bottom-0 left-0 w-full bg-orange-500 text-white px-6 py-4 rounded-t-md translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-200 ease-in-out">
+              <div className="absolute bottom-0 left-0 w-full bg-orange-500 text-white px-6 py-4 rounded-t-md translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ">
                 <div className="space-y-3">
                   <h1>{news.description}</h1>
                   <button className="bg-gradient-to-br from-purple-600 to-pink-600 text-white px-6 py-2 rounded-3xl shadow-lg hover:scale-105 transition-transform">
