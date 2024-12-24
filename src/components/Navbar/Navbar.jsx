@@ -76,7 +76,7 @@ const Navbar = ({ }) => {
           </Link>
         </ul>
         <div className="flex items-center space-x-6 md:hidden">
-          <Link onClick={handleMenu} to="/login">
+          <Link  to="/login">
             <FaCircleUser className="text-2xl" />
           </Link>
           <LuMenu onClick={handleMenu} className="text-2xl" />
