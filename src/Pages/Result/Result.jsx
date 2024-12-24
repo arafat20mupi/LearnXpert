@@ -11,6 +11,13 @@ const Result = () => {
       <div className="container mx-auto border border-gray-300 rounded-lg p-4 shadow-lg bg-white py-10">
         <div className="flex flex-col pb-5 border-b">
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
+            <select className="w-full md:w-[unset] border border-gray-300 outline-none text-sm p-2 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 transition">
+              <option value="">Class 6</option>
+              <option value="">Class 7</option>
+              <option value="">Class 8</option>
+              <option value="">Class 9</option>
+              <option value="">Class 10</option>
+            </select>
             <input
               type="text"
               placeholder="Search by roll no..."
@@ -54,20 +61,20 @@ const Result = () => {
             </thead>
             <tbody>
               {
-              information.map((item, index) => (
-                
-                <tr key={index} className={`bg-white hover:bg-blue-50`}>
-                  <td className="p-3 border border-gray-300">{item.subject}</td>
-                  <td className="p-3 border border-gray-300">{item.marks}</td>
-                  <td className="p-3 border border-gray-300">
+                information.map((item, index) => (
 
-                    <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm">
-                      {item.grade}
+                  <tr key={index} className={`bg-white hover:bg-blue-50`}>
+                    <td className="p-3 border border-gray-300">{item.subject}</td>
+                    <td className="p-3 border border-gray-300">{item.marks}</td>
+                    <td className="p-3 border border-gray-300">
 
-                    </span>
-                  </td>
-                </tr>
-              ))}
+                      <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm">
+                        {item.grade}
+
+                      </span>
+                    </td>
+                  </tr>
+                ))}
               <tr className="bg-gray-100">
                 <td colSpan="2" className="p-3 text-right font-bold">
                   Overall Grade:

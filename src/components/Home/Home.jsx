@@ -18,7 +18,6 @@ const Home = () => {
         <Faq />
         <Contact />
       </div>
-      <Footer />
     </div>
   );
 };
