@@ -6,6 +6,7 @@ import Result from "../Pages/Result/Result";
 import Quiz from "../components/Quiz/Quiz";
 import Register from "../components/Register/Register";
 import Login from "../components/Login/Login";
+import QuizClasses from "../components/Quiz-Classes/QuizClasses";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />
       },
+      {
+        path: "/quiz-classes",
+        element: <QuizClasses />
+      }
     ],
   },
 ]);
