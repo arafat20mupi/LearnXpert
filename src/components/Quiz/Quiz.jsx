@@ -1,6 +1,7 @@
 import { PiNumberCircleSeven } from "react-icons/pi";
 import { PiNumberCircleEight } from "react-icons/pi";
 import { PiNumberCircleNine } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const Quiz = () => {
   const card = [
@@ -61,9 +62,11 @@ const Quiz = () => {
                 </div>
                 <span className="block mt-8">{el.className}</span>
               </div>
-              <button className="bg-white rounded-lg text-green-500 ring ring-green-400 inline-block px-16 py-2 mt-16 active:scale-95 transition-transform duration-300">
-                Play Quiz
-              </button>
+              <Link to="/quiz-classes">
+                <button className="bg-white rounded-lg text-green-500 ring ring-green-400 inline-block px-16 py-2 mt-16 active:scale-95 transition-transform duration-300">
+                  Play Quiz
+                </button>
+              </Link>
             </div>
           );
         })}

@@ -7,6 +7,8 @@ import Quiz from "../components/Quiz/Quiz";
 import Register from "../components/Register/Register";
 import Login from "../components/Login/Login";
 import QuizClasses from "../components/Quiz-Classes/QuizClasses";
+import AdmissionForm from "../components/AdmissionForm/AdmissionForm";
+import AdmissionInfo from "../components/AdmissionInfo/AdmissionInfo";
 
 const router = createBrowserRouter([
   {
@@ -23,24 +25,32 @@ const router = createBrowserRouter([
       },
       {
         path: "/result",
-        element: <Result />
+        element: <Result />,
       },
       {
         path: "/quiz",
-        element: <Quiz />
+        element: <Quiz />,
       },
       {
         path: "/register",
-        element: <Register />
+        element: <Register />,
       },
       {
         path: "/login",
-        element: <Login />
+        element: <Login />,
       },
       {
         path: "/quiz-classes",
-        element: <QuizClasses />
-      }
+        element: <QuizClasses />,
+      },
+      {
+        path: "/admission",
+        element: <AdmissionForm />,
+      },
+      {
+        path: "/admissionInfo",
+        element: <AdmissionInfo />,
+      },
     ],
   },
 ]);

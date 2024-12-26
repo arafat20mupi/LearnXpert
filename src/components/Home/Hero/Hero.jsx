@@ -19,7 +19,7 @@ const Hero = () => {
             Empowering Young Minds, Building Bright Futures
           </h1>
           <p className="text-center md:text-xl my-2 md:my-5 text-white text-md px-5">
-            Join our community where learning meets fun and creativity."
+            Join our community where learning meets fun and creativity
           </p>
           <a
             href="#topStudent"
