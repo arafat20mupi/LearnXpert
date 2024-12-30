@@ -28,6 +28,13 @@ const AllStudents = () => {
     <div className="my-3 pl-2">
       <h1 className="text-black text-xl mb-3">Add Students</h1>
       <div className="flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-3  my-3">
+      <select className="w-full md:w-[unset] px-4 py-2 rounded-md ring-gray-300 ring-1 focus:ring-2 focus:ring-blue-500 duration-300 outline-0">
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
         <input
           className="w-full md:w-[unset] px-4 py-2 rounded-md ring-gray-300 ring-1 focus:ring-2 focus:ring-blue-500 duration-300 outline-0"
           type="number"
@@ -62,10 +69,10 @@ const AllStudents = () => {
                 </td>
                 <td className="p-3 border border-gray-300">
                   <div className="flex items-center space-x-2">
-                    <button className="px-3 py-1 bg-red-600 text-white rounded-full">
-                      Delete
-                    </button>
                     <button className="px-3 py-1 bg-yellow-400 text-black rounded-full">
+                    Update
+                    </button>
+                    <button className="px-3 py-1 bg-red-600 text-white rounded-full">
                       Delete
                     </button>
                   </div>
