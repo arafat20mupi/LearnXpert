@@ -13,6 +13,15 @@ import AdminHome from "../Dashboard/Home/AdminHome";
 import AllStudents from "../Dashboard/AllStudents/AllStudents";
 import Dashboard from "../Dashboard/Dashboard";
 import UploadResult from "../Dashboard/UploadResult/UploadResult";
+import AllParents from "../Dashboard/AllParents/AllParents";
+import AllTeacher from "../Dashboard/AllTeacher/AllTeacher";
+import UpdateHeadline from "../Dashboard/UpdateHeadline/UpdateHeadline";
+import UploadAssignment from "../Dashboard/UploadAssignment/UploadAssignment";
+import Syllabus from "../Dashboard/Syllabus/Syllabus";
+import UploadClassReport from "../Dashboard/UploadClassReport/UploadClassReport";
+import AttendanceTracking from "../Dashboard/AttendanceTracking/AttendanceTracking";
+import ClassSchedule from "../Dashboard/ClassSchedule/ClassSchedule";
+import ReciveAssignment from "../Dashboard/ReciveAssignmenr/ReciveAssignment";
 
 const router = createBrowserRouter([
   {
@@ -72,8 +81,50 @@ const router = createBrowserRouter([
         element: <AllStudents />
       },
       {
+        path: "/admin/all-parent",
+        element: <AllParents />
+      },
+      {
+        path: "/admin/all-teacher",
+        element: <AllTeacher />
+      },
+      ///Teacher access
+      {
         path: "/admin/upload-result",
         element: <UploadResult />
+      },
+      ///Teacher access
+      {
+        path: "/admin/upload-result",
+        element: <UploadResult />
+      },
+      {
+        path: "/admin/upload-assignment",
+        element: <UploadAssignment />
+      },
+      {
+        path: "/admin/recive-assignment",
+        element: <ReciveAssignment />
+      },
+      {
+        path: "/admin/upload-syllabus",
+        element: <Syllabus />
+      },
+      {
+        path: "/admin/upload-class-report",
+        element: <UploadClassReport />
+      },
+      {
+        path: "/admin/class-schedule",
+        element: <ClassSchedule />
+      },
+      {
+        path: "/admin/attendance-tracking",
+        element: <AttendanceTracking />
+      },
+      {
+        path: "/admin/update-headline",
+        element: <UpdateHeadline />
       },
     ]
   }

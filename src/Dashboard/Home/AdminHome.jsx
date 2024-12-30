@@ -81,11 +81,12 @@ const AdminHome = () => {
                 </td>
                 <td className="p-3 border border-gray-300">
                   <div className="flex items-center space-x-2">
-                    <button className="px-3 py-1 bg-red-600 text-white rounded-full">
-                      Delete
-                    </button>
                     <button className="px-3 py-1 bg-yellow-400 text-black rounded-full">
-                      Delete
+                    Update
+                      
+                    </button>
+                    <button className="px-3 py-1 bg-red-600 text-white rounded-full">
+                    Delete
                     </button>
                   </div>
                 </td>
