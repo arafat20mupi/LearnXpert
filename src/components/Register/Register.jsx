@@ -7,16 +7,17 @@ import toast from "react-hot-toast";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
-  const { googleSignIn, createUser } = useContext(AuthContext)
+  const { googleSignIn, createUser , upDateProfile} = useContext(AuthContext)
 
   const navigate = useNavigate()
   const onSubmit = (data) => {
     console.log(data);
-    const { email, password, } = data;
+    const { email, password,name , role } = data;
 
     createUser(email, password)
       .then(() => {
-        console.log("User created successfully!");
+        upDateProfile(name , role)
+        console.log("User created successfully!" );
         toast.success('User created successfully!!');
         navigate('/');
       })
