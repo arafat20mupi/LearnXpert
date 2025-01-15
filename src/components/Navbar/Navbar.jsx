@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import  { useContext, useState } from "react";
 import { FaCircleUser } from "react-icons/fa6";
 import { FaAngleDown } from "react-icons/fa";
 import { FaAngleUp } from "react-icons/fa";
 import { LuMenu } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
-const Navbar = ({}) => {
+const Navbar = () => {
   const [isOpen, setisOpen] = useState(false);
   const [isDropDown, setisDropDown] = useState(false);
-
+  const {user} =useContext(AuthContext)
+console.log(user)
   const handleDropDownone = () => {
     setisDropDown(!isDropDown);
   };
@@ -88,7 +90,7 @@ const Navbar = ({}) => {
             Quiz
           </Link>
           <Link className="px-3 hover:text-slate-600 cursor-pointer hidden md:block">
-            <Link onClick={() => setisOpen(!isOpen)} to="/login">
+            <Link onClick={() => setisOpen(!isOpen)}  to={user ? '/admin' : "/login"}>
               <FaCircleUser className="text-2xl" />
             </Link>
           </Link>

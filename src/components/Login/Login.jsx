@@ -1,13 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const { signIn, googleSignIn, user } = useContext(AuthContext);
+  const { signIn,  user } = useContext(AuthContext);
   const navigate = useNavigate()
 console.log(user)
   const onSubmit = async (data) => {
@@ -23,15 +22,7 @@ console.log(user)
     }
   };
 
-  const handleGoogleSubmit = async () => {
-    try {await googleSignIn();
-        toast.success('Login Successful!!');
-        navigate('/');
-    } catch (error) {
-        console.error("Error with Google Sign In:", error);
-        toast.error('Login Unsuccessful!!');
-    }
-  };
+  
   return (
     <div className="flex flex-col items-center justify-center h-[100vh]">
       <form onSubmit={handleSubmit(onSubmit)} className="bg-white flex flex-col px-7 py-5 shadow-md ring-1 ring-gray-400 rounded-md space-y-1">
@@ -55,9 +46,7 @@ console.log(user)
             Login
           </button>
         </div>
-        <button onClick={handleGoogleSubmit} className="flex items-center justify-center bg-white ring-1  ring-gray-400 w-full text-gray-700 px-3 py-1 rounded-md mt-3">
-          <FcGoogle className="mr-2" /> Login with Google
-        </button>
+       
         <p>
           Don&apos;t have an account?
           <span className="underline text-blue-400">
