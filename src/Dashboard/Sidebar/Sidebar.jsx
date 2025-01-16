@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import {
   FaAngleDown,
   FaAngleUp,
@@ -13,6 +14,7 @@ import { PiStudentFill } from "react-icons/pi";
 import { RiParentFill } from "react-icons/ri";
 import { RxUpdate } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import useRole from "../../Hooks/useRole";
 
 const Sidebar = ({ toggle, open }) => {
   const [adminToggle, setAdminToggle] = useState(false);
@@ -25,8 +27,20 @@ const Sidebar = ({ toggle, open }) => {
     setTeacherToggle(!TeacherToggle);
   };
 
-  const isAdmin = false;
-  const isTeacher = true;
+
+  const { role, loading, error } = useRole();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (role !== 'admin') {
+    return <div>You do not have admin access</div>;  // Access restricted message
+  }
 
   return (
     <div>
@@ -49,7 +63,7 @@ const Sidebar = ({ toggle, open }) => {
             </div>
           </li>
           <li className="text-center">
-            {isAdmin ? "Admin Pannel" : "Teacher Pannel"}
+            {role === 'admin'  ? "Admin Pannel" : "Teacher Pannel"}
           </li>
           <Link
             to="/admin"
@@ -63,7 +77,7 @@ const Sidebar = ({ toggle, open }) => {
           {/* for admin */}
 
           <div className="flex flex-col">
-            {isAdmin && (
+            {role === 'admin' && (
               <div
                 onClick={handleAdmin}
                 className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 cursor-pointer"
@@ -81,6 +95,9 @@ const Sidebar = ({ toggle, open }) => {
             )}
             {adminToggle && (
               <ul className="select-none text-sm flex flex-col">
+                <Link to="/admin/allUsers" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                 All User
+                </Link>
                 <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
                   Add People
                 </Link>
@@ -105,7 +122,7 @@ const Sidebar = ({ toggle, open }) => {
 
           {/* for admin */}
           <div className="flex flex-col">
-            {isTeacher && (
+            {role === 'teacher' && (
               <div
                 onClick={handleTeacher}
                 className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 cursor-pointer"
@@ -150,7 +167,7 @@ const Sidebar = ({ toggle, open }) => {
               </ul>
             )}
           </div>
-          {isTeacher && (
+          {role === 'teacher' && (
             <Link
               to="/admin/upload-result"
               className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
@@ -161,7 +178,7 @@ const Sidebar = ({ toggle, open }) => {
               <span>Upload Result</span>
             </Link>
           )}
-          {isAdmin && (
+          {role === 'admin' && (
             <Link
               to="/admin/all-student"
               className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
@@ -172,7 +189,7 @@ const Sidebar = ({ toggle, open }) => {
               <span>All Students</span>
             </Link>
           )}
-          {isAdmin && (
+          {role === 'admin'  && (
             <Link
               to={"/admin/all-parent"}
               className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
@@ -183,7 +200,7 @@ const Sidebar = ({ toggle, open }) => {
               <span>All Parents</span>
             </Link>
           )}
-          {isAdmin && (
+          {role === 'admin'  && (
             <Link
               to="/admin/all-teacher"
               className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
