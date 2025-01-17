@@ -7,7 +7,7 @@ import {
   FaChalkboardTeacher,
   FaPlus,
 } from "react-icons/fa";
-
+import { MdUpload } from "react-icons/md"
 import { IoMdHome } from "react-icons/io";
 import { PiStudentFill } from "react-icons/pi";
 import { RiParentFill } from "react-icons/ri";
@@ -204,8 +204,16 @@ const Sidebar = ({ toggle, open }) => {
                     </Link>
                   </ul>
                 )}
+                <Link
+                  to="/deshboard/upload-result"
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
+                >
+                  <div className="text-red-500 bg-red-200 p-2 rounded-full">
+                    <MdUpload className="text-2xl" />
+                  </div>
+                  <span>Upload Result</span>
+                </Link>
 
-               
 
               </div>
             )}
