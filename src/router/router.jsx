@@ -23,6 +23,7 @@ import AttendanceTracking from "../Dashboard/AttendanceTracking/AttendanceTracki
 import ClassSchedule from "../Dashboard/ClassSchedule/ClassSchedule";
 import ReciveAssignment from "../Dashboard/ReciveAssignmenr/ReciveAssignment";
 import AllUsers from "../Dashboard/AllUsers/AllUsers";
+import UploadResultDemo from "../Dashboard/UploadResult/UploadResultDemo";
 // import ResultDemo from "../Pages/Result/ResultDemo";
 
 const router = createBrowserRouter([
@@ -132,6 +133,10 @@ const router = createBrowserRouter([
         path: "update-headline",
         element: <UpdateHeadline />
       },
+      {
+        path: "upload-demo",
+        element: <UploadResultDemo />
+      }
     ]
   }
 ]);
