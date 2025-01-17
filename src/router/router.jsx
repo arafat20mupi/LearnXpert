@@ -22,9 +22,8 @@ import UploadClassReport from "../Dashboard/UploadClassReport/UploadClassReport"
 import AttendanceTracking from "../Dashboard/AttendanceTracking/AttendanceTracking";
 import ClassSchedule from "../Dashboard/ClassSchedule/ClassSchedule";
 import ReciveAssignment from "../Dashboard/ReciveAssignmenr/ReciveAssignment";
-
 import AllUsers from "../Dashboard/AllUsers/AllUsers";
-
+// import ResultDemo from "../Pages/Result/ResultDemo";
 
 const router = createBrowserRouter([
   {
@@ -72,11 +71,11 @@ const router = createBrowserRouter([
 
   },
   {
-    path: "/admin",
+    path: "/deshboard",
     element: <Dashboard />,
     children: [
       {
-        path: "/admin",
+        path: "admin",
         element: <AdminHome />
       },
       {
@@ -84,53 +83,53 @@ const router = createBrowserRouter([
         element: <AllUsers />
       },
       {
-        path: "/admin/all-student",
+        path: "all-student",
         element: <AllStudents />
       },
       {
-        path: "/admin/all-parent",
+        path: "all-parent",
         element: <AllParents />
       },
       {
-        path: "/admin/all-teacher",
+        path: "all-teacher",
         element: <AllTeacher />
       },
       ///Teacher access
       {
-        path: "/admin/upload-result",
+        path: "upload-result",
         element: <UploadResult />
       },
       ///Teacher access
       {
-        path: "/admin/upload-result",
+        path: "upload-result",
         element: <UploadResult />
       },
       {
-        path: "/admin/upload-assignment",
+        path: "upload-assignment",
         element: <UploadAssignment />
       },
       {
-        path: "/admin/recive-assignment",
+        path: "recive-assignment",
         element: <ReciveAssignment />
       },
       {
-        path: "/admin/upload-syllabus",
+        path: "upload-syllabus",
         element: <Syllabus />
       },
       {
-        path: "/admin/upload-class-report",
+        path: "upload-class-report",
         element: <UploadClassReport />
       },
       {
-        path: "/admin/class-schedule",
+        path: "class-schedule",
         element: <ClassSchedule />
       },
       {
-        path: "/admin/attendance-tracking",
+        path: "attendance-tracking",
         element: <AttendanceTracking />
       },
       {
-        path: "/admin/update-headline",
+        path: "update-headline",
         element: <UpdateHeadline />
       },
     ]

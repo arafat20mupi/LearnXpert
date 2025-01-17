@@ -9,7 +9,6 @@ import {
 } from "react-icons/fa";
 
 import { IoMdHome } from "react-icons/io";
-import { MdUpload } from "react-icons/md";
 import { PiStudentFill } from "react-icons/pi";
 import { RiParentFill } from "react-icons/ri";
 import { RxUpdate } from "react-icons/rx";
@@ -38,9 +37,6 @@ const Sidebar = ({ toggle, open }) => {
     return <div>{error}</div>;
   }
 
-  if (role !== 'admin') {
-    return <div>You do not have admin access</div>;  // Access restricted message
-  }
 
   return (
     <div>
@@ -63,163 +59,159 @@ const Sidebar = ({ toggle, open }) => {
             </div>
           </li>
           <li className="text-center">
-            {role === 'admin'  ? "Admin Pannel" : "Teacher Pannel"}
+            {role === 'admin' ? "Admin Pannel" : "Teacher Pannel"}
           </li>
-          <Link
-            to="/admin"
-            className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
-          >
-            <div className="text-blue-500 bg-blue-200 p-2 rounded-full">
-              <IoMdHome className="text-2xl" />
-            </div>
-            <span>Home</span>
-          </Link>
+
           {/* for admin */}
 
           <div className="flex flex-col">
             {role === 'admin' && (
-              <div
-                onClick={handleAdmin}
-                className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 cursor-pointer"
-              >
-                <div className="text-orange-500 bg-orange-200 p-2 rounded-full">
-                  <FaPlus className="text-2xl" />
+
+              <div>
+                <Link
+                  to="/deshboard/admin"
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
+                >
+                  <div className="text-blue-500 bg-blue-200 p-2 rounded-full">
+                    <IoMdHome className="text-2xl" />
+                  </div>
+                  <span>Home</span>
+                </Link>
+                <div
+                  onClick={handleAdmin}
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 cursor-pointer"
+                >
+                  <div className="text-orange-500 bg-orange-200 p-2 rounded-full">
+                    <FaPlus className="text-2xl" />
+                  </div>
+                  <div className="flex items-center">
+                    Adding
+                    <span className="mx-1">
+                      {adminToggle ? <FaAngleUp /> : <FaAngleDown />}
+                    </span>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  Adding
-                  <span className="mx-1">
-                    {adminToggle ? <FaAngleUp /> : <FaAngleDown />}
-                  </span>
-                </div>
+                {adminToggle && (
+                  <ul className="select-none text-sm flex flex-col">
+                    <Link to="/deshboard/allUsers" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      All User
+                    </Link>
+                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Add People
+                    </Link>
+                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Handle Fee&apos;s
+                    </Link>
+                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Class Schedule
+                    </Link>
+                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Event Management
+                    </Link>
+                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Online Meeting
+                    </Link>
+                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Manage Library
+                    </Link>
+                  </ul>
+                )}
+                <Link
+                  to={"/deshboard/all-parent"}
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
+                >
+                  <div className="text-red-500 bg-red-200 p-2 rounded-full">
+                    <RiParentFill className="text-2xl" />
+                  </div>
+                  <span>All Parents</span>
+                </Link>
+                <Link
+                  to="/deshboard/all-teacher"
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
+                >
+                  <div className="text-yellow-500 bg-yellow-200 p-2 rounded-full">
+                    <FaChalkboardTeacher className="text-2xl" />
+                  </div>
+                  <span>All Teachers</span>
+                </Link>
+                <Link
+                  to="/deshboard/all-student"
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
+                >
+                  <div className="text-green-500 bg-green-200 p-2 rounded-full">
+                    <PiStudentFill className="text-2xl" />
+                  </div>
+                  <span>All Students</span>
+                </Link>
+                <Link
+                  to="/deshboard/update-headline"
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
+                >
+                  <div className="text-purple-500 bg-purple-200 p-2 rounded-full">
+                    <RxUpdate className="text-2xl" />
+                  </div>
+                  <span>Update Headline</span>
+                </Link>
               </div>
             )}
-            {adminToggle && (
-              <ul className="select-none text-sm flex flex-col">
-                <Link to="/admin/allUsers" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                 All User
-                </Link>
-                <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Add People
-                </Link>
-                <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Handle Fee's
-                </Link>
-                <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Class Schedule
-                </Link>
-                <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Event Management
-                </Link>
-                <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Online Meeting
-                </Link>
-                <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Manage Library
-                </Link>
-              </ul>
+
+          </div>
+
+          {/* for Teacher */}
+          <div className="flex flex-col">
+            {role === 'teacher' && (
+              <div>
+                <div
+                  onClick={handleTeacher}
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 cursor-pointer"
+                >
+                  <div className="text-pink-500 bg-pink-200 p-2 rounded-full">
+                    <FaPlus className="text-2xl" />
+                  </div>
+                  <div className="flex items-center">
+                    Adding
+                    <span className="mx-1">
+                      {adminToggle ? <FaAngleUp /> : <FaAngleDown />}
+                    </span>
+                  </div>
+                </div>
+
+                {TeacherToggle && (
+                  <ul className="select-none text-sm flex flex-col">
+                    <Link to="/deshboard/upload-assignment" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Upload Assignment
+                    </Link>
+                    <Link to="/deshboard/recive-assignment" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Recive assignment
+                    </Link>
+                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Online Exam
+                    </Link>
+                    <Link to="/deshboard/class-schedule" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Class Schedule
+                    </Link>
+                    <Link to="/deshboard/upload-syllabus" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Syllabus and lesson plans.
+                    </Link>
+                    <Link to="/deshboard/attendance-tracking" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Attendance Tracking
+                    </Link>
+                    <Link to="/deshboard/upload-class-report" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Class reports.
+                    </Link>
+                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                      Online Class
+                    </Link>
+                  </ul>
+                )}
+
+               
+
+              </div>
             )}
           </div>
 
-          {/* for admin */}
-          <div className="flex flex-col">
-            {role === 'teacher' && (
-              <div
-                onClick={handleTeacher}
-                className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 cursor-pointer"
-              >
-                <div className="text-pink-500 bg-pink-200 p-2 rounded-full">
-                  <FaPlus className="text-2xl" />
-                </div>
-                <div className="flex items-center">
-                  Adding
-                  <span className="mx-1">
-                    {adminToggle ? <FaAngleUp /> : <FaAngleDown />}
-                  </span>
-                </div>
-              </div>
-            )}
-            {TeacherToggle && (
-              <ul className="select-none text-sm flex flex-col">
-                <Link to="/admin/upload-assignment" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Upload Assignment
-                </Link>
-                <Link to="/admin/recive-assignment" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Recive assignment
-                </Link>
-                <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Online Exam
-                </Link>
-                <Link to="/admin/class-schedule" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Class Schedule
-                </Link>
-                <Link to="/admin/upload-syllabus" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Syllabus and lesson plans.
-                </Link>
-                <Link to="/admin/attendance-tracking" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Attendance Tracking
-                </Link>
-                <Link to="/admin/upload-class-report" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Class reports.
-                </Link>
-                <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                  Online Class
-                </Link>
-              </ul>
-            )}
-          </div>
-          {role === 'teacher' && (
-            <Link
-              to="/admin/upload-result"
-              className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
-            >
-              <div className="text-red-500 bg-red-200 p-2 rounded-full">
-                <MdUpload className="text-2xl" />
-              </div>
-              <span>Upload Result</span>
-            </Link>
-          )}
-          {role === 'admin' && (
-            <Link
-              to="/admin/all-student"
-              className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
-            >
-              <div className="text-green-500 bg-green-200 p-2 rounded-full">
-                <PiStudentFill className="text-2xl" />
-              </div>
-              <span>All Students</span>
-            </Link>
-          )}
-          {role === 'admin'  && (
-            <Link
-              to={"/admin/all-parent"}
-              className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
-            >
-              <div className="text-red-500 bg-red-200 p-2 rounded-full">
-                <RiParentFill className="text-2xl" />
-              </div>
-              <span>All Parents</span>
-            </Link>
-          )}
-          {role === 'admin'  && (
-            <Link
-              to="/admin/all-teacher"
-              className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
-            >
-              <div className="text-yellow-500 bg-yellow-200 p-2 rounded-full">
-                <FaChalkboardTeacher className="text-2xl" />
-              </div>
-              <span>All Teachers</span>
-            </Link>
-          )}
-          <Link
-            to="/admin/update-headline"
-            className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
-          >
-            <div className="text-purple-500 bg-purple-200 p-2 rounded-full">
-              <RxUpdate className="text-2xl" />
-            </div>
-            <span>Update Headline</span>
-          </Link>
+
         </ul>
       </div>
     </div>
