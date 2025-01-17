@@ -144,7 +144,7 @@ const AllUsers = () => {
                                     </button>
                                     <button
                                         onClick={() => handleApprove(user._id)}
-                                        className="text-red-500 hover:underline"
+                                        className="btn ml-3 btn-secondary hover:underline"
                                     >
                                         Approve
                                     </button>

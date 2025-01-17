@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isOpen, setisOpen] = useState(false);
   const [isDropDown, setisDropDown] = useState(false);
   const { user } = useContext(AuthContext)
-  const { role, loading, error } = useRole();
+  const { role, loading,  } = useRole();
 
   if (loading) {
     return (
@@ -22,9 +22,7 @@ const Navbar = () => {
     );
   }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+ 
 
   const handleDropDownone = () => {
     setisDropDown(!isDropDown);
@@ -104,7 +102,7 @@ const Navbar = () => {
             Quiz
           </Link>
           <Link className="px-3 hover:text-slate-600 cursor-pointer hidden md:block">
-            <Link onClick={() => setisOpen(!isOpen)} to={user && role ? '/admin' : "/login"}>
+            <Link onClick={() => setisOpen(!isOpen)} to={user && role ? '/deshboard' : "/login"}>
               <FaCircleUser className="text-2xl" />
             </Link>
           </Link>
