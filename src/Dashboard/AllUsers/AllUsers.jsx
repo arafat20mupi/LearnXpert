@@ -61,6 +61,7 @@ const AllUsers = () => {
             html: `
                 <input id="name" class="swal2-input" placeholder="Name" value="${userToUpdate?.name || ''}">
                 <input id="email" class="swal2-input" placeholder="Email" value="${userToUpdate?.email || ''}">
+                <input id="" class="swal2-input" placeholder="Set Your Role"">
             `,
             focusConfirm: false,
             preConfirm: () => {
