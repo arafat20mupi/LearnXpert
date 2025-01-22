@@ -29,7 +29,7 @@ const ResultDemo = () => {
 
       let points = [];
 
-      stData?.marks?.forEach((item, i)=>{
+      stData?.marks?.forEach((item)=>{
         points.push(
             item.mark >= 80 ? 5 :
             item.mark >= 70 ? 4 :

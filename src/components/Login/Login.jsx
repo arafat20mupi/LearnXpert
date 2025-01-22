@@ -6,9 +6,8 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const { signIn,  user } = useContext(AuthContext);
+  const { signIn} = useContext(AuthContext);
   const navigate = useNavigate()
-console.log(user)
   const onSubmit = async (data) => {
     const { email, password } = data;
     try {
