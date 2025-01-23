@@ -45,7 +45,7 @@ const UploadResult = () => {
 
   const onSubmit = async (data) => {
     try {
-      const responsive = axios.post('/api/uploadsResult', data);
+      const responsive = await axios.post('/api/post-result', data);
       if (responsive.status === 200) {
         toast.success('Marks uploaded successfully');
         reset();
