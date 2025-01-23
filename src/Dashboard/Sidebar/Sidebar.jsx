@@ -6,8 +6,9 @@ import {
   FaArrowAltCircleRight,
   FaChalkboardTeacher,
   FaPlus,
+  FaUpload,
 } from "react-icons/fa";
-import { MdUpload } from "react-icons/md"
+import { MdOutlineOnlinePrediction, MdUpload } from "react-icons/md"
 import { IoMdHome } from "react-icons/io";
 import { PiStudentFill } from "react-icons/pi";
 import { RiParentFill } from "react-icons/ri";
@@ -59,7 +60,10 @@ const Sidebar = ({ toggle, open }) => {
             </div>
           </li>
           <li className="text-center">
-            {role === 'admin' ? "Admin Pannel" : "Teacher Pannel"}
+            {role === 'admin' && "Admin Pannel"}
+            {role === 'student' && "Student Pannel"}
+            {role === 'parent' && "Parent Pannel"}
+            {role === 'teacher' && "Teacher Pannel"}
           </li>
 
           {/* for admin */}
@@ -114,7 +118,7 @@ const Sidebar = ({ toggle, open }) => {
                   </ul>
                 )}
                 <Link
-                 to="/deshboard/allUsers"
+                  to="/deshboard/allUsers"
                   className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
                 >
                   <div className="text-red-500 bg-red-200 p-2 rounded-full">
@@ -230,13 +234,31 @@ const Sidebar = ({ toggle, open }) => {
             {role === 'student' && (
               <div>
                 <Link
-                  to="/deshboard/student"
+                  to="/deshboard/class-routine"
                   className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
                 >
                   <div className="text-green-500 bg-green-200 p-2 rounded-full">
                     <PiStudentFill className="text-2xl" />
                   </div>
-                  <span>Students</span>
+                  <span>Class Routine</span>
+                </Link>
+                <Link
+                  to="/deshboard/upload-assignment-for-student"
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
+                >
+                  <div className="text-red-500 bg-red-200 p-2 rounded-full">
+                    <FaUpload className="text-xl" />
+                  </div>
+                  <span>Upload Assignment</span>
+                </Link>
+                <Link
+                  to="/deshboard/online-class"
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
+                >
+                  <div className="text-purple-500 bg-purple-200 p-2 rounded-full">
+                    <MdOutlineOnlinePrediction className="text-xl"/>
+                  </div>
+                  <span>Online class</span>
                 </Link>
               </div>
             )}
