@@ -83,6 +83,7 @@ const AllTeacher = () => {
           <thead>
             <tr className="bg-gray-100">
               <th className="px-16 md:p-3 border border-gray-300">Name</th>
+              <th className="px-16 md:p-3 border border-gray-300">Email</th>
               <th className="px-16 md:p-3 border border-gray-300">Phone</th>
               <th className="px-16 md:p-3 border border-gray-300">Address</th>
               <th className="px-16 md:p-3 border border-gray-300">Actions</th>
@@ -92,6 +93,7 @@ const AllTeacher = () => {
             {filteredTeachers.map((teacher) => (
               <tr key={teacher._id} className={`bg-white hover:bg-blue-50`}>
                 <td className="p-3 border border-gray-300">{teacher.name}</td>
+                <td className="p-3 border border-gray-300">{teacher.email}</td>
                 <td className="p-3 border border-gray-300">{teacher.phone}</td>
                 <td className="p-3 border border-gray-300">{teacher.address}</td>
                 <td className="p-3 border border-gray-300">
