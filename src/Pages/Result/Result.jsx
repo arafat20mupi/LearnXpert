@@ -5,6 +5,7 @@ const ResultDemo = () => {
     const [className, setClassName] = useState('');
     const [rollNo, setRollName] = useState("");
     const [stData, setStData] = useState({});
+    console.log(stData);
     const [showResult, setShowResult] = useState(false); // New state to control result visibility
     const [errorMessage, setErrorMessage] = useState(""); // New state for error message
     console.log(stData);

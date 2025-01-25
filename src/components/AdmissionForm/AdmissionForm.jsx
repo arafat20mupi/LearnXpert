@@ -1,7 +1,11 @@
-import React from "react";
+
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { toast } from "react-hot-toast";
+
 
 const AdmissionForm = () => {
+  const axios = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -9,10 +13,20 @@ const AdmissionForm = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    alert("Form submitted successfully!");
-    console.log("Submitted Data:", data);
-    reset();
+  const onSubmit = async(data) => {
+      try {
+          const response = await axios.post('/api/submit-admission-data', data);
+          if (response.status === 200) {
+            toast.success('Marks uploaded successfully');
+            console.log(response.data.admissionData);
+            reset();
+          } else {
+            toast.error('Error uploading marks');
+          }
+          reset();
+      } catch (error) {
+        toast.error('Error uploading marks', error.message);
+      }
   };
 
   return (
@@ -22,7 +36,7 @@ const AdmissionForm = () => {
           School Admission Form
         </h1>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit((data)=>onSubmit(data))}
           className="grid gap-x-5 gap-y-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
         >
           <div>
@@ -42,7 +56,7 @@ const AdmissionForm = () => {
             <label className="font-semibold block mb-1">Date of Birth</label>
             <input
               type="date"
-              {...register("dateOfBirth", {
+              {...register("dob", {
                 required: "Date of birth is required",
               })}
               className="w-full px-2 py-2 border-gray-400 rounded outline-none focus:ring focus:ring-blue-500"
@@ -74,7 +88,7 @@ const AdmissionForm = () => {
             </label>
             <input
               type="text"
-              {...register("class", { required: "Class is required" })}
+              {...register("className", { required: "Class is required" })}
               className="w-full ring-1 px-3 py-2 rounded border-gray-400 focus:outline-none focus:ring focus:ring-blue-400"
             />
             {errors.class && (
@@ -85,7 +99,7 @@ const AdmissionForm = () => {
             <label className="block font-semibold mb-1">Previous School</label>
             <input
               type="text"
-              {...register("previousSchool")}
+              {...register("prevSchool")}
               className="ring-1 px-2 py-2 border-gray-300 w-full rounded focus:ring focus:ring-blue-500 outline-none"
             />
           </div>
@@ -125,7 +139,7 @@ const AdmissionForm = () => {
             <label className="mb-1 block font-semibold">Guardian Email</label>
             <input
               type="email"
-              {...register("email", { required: "Email is required" })}
+              {...register("guardianEmail", { required: "Email is required" })}
               className="focus:outline-none focus:ring-blue-500 px-2 py-1.5 border-gray-300 ring-1 w-full rounded"
             />
             {errors.email && (
