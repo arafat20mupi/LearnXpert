@@ -29,6 +29,9 @@ import { ClassRoutine } from "../Dashboard/StudenPannel/ClassRoutine/ClassRoutin
 import UploadAssignmentForStudent from "../Dashboard/StudenPannel/UploadAssignment/UploadAssignmentForStudent";
 import { OnlineClass } from "../Dashboard/StudenPannel/OnlineClass/OnlineClass";
 import Admission from "../Dashboard/Admission/Admission";
+import UploadReacordedClass from "../Dashboard/UploadReacordedClass/UploadReacordedClass";
+import LiveClass from "../Dashboard/StudenPannel/LiveClass/LiveClass";
+
 // import ResultDemo from "../Pages/Result/ResultDemo";
 
 const router = createBrowserRouter([
@@ -72,9 +75,7 @@ const router = createBrowserRouter([
         path: "/admissionInfo",
         element: <AdmissionInfo />,
       },
-
     ],
-
   },
   {
     path: "/deshboard",
@@ -82,23 +83,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: "admin",
-        element: <AdminHome />
+        element: <AdminHome />,
       },
       {
         path: "allUsers",
-        element: <AllUsers />
+        element: <AllUsers />,
       },
       {
         path: "all-student",
-        element: <AllStudents />
+        element: <AllStudents />,
       },
       {
         path: "all-parent",
-        element: <AllParents />
+        element: <AllParents />,
       },
       {
         path: "all-teacher",
-        element: <AllTeacher />
+        element: <AllTeacher />,
       },
       {
         path: "admission",
@@ -107,55 +108,67 @@ const router = createBrowserRouter([
       ///Teacher access
       {
         path: "upload-result",
-        element: <UploadResult />
+        element: <UploadResult />,
+      },
+      {
+        path: "upload-recorded-class",
+        element: <UploadReacordedClass />,
       },
       ///Teacher access
       {
         path: "upload-result",
-        element: <UploadResult />
+        element: <UploadResult />,
       },
       {
         path: "upload-assignment",
-        element: <UploadAssignment />
+        element: <UploadAssignment />,
       },
       {
         path: "recive-assignment",
-        element: <ReciveAssignment />
+        element: <ReciveAssignment />,
       },
       {
         path: "upload-syllabus",
-        element: <Syllabus />
+        element: <Syllabus />,
       },
       {
         path: "upload-class-report",
-        element: <UploadClassReport />
+        element: <UploadClassReport />,
       },
       {
         path: "class-schedule",
-        element: <ClassSchedule />
+        element: <ClassSchedule />,
       },
       {
         path: "attendance-tracking",
-        element: <AttendanceTracking />
+        element: <AttendanceTracking />,
       },
       {
         path: "update-headline",
-        element: <UpdateHeadline />
+        element: <UpdateHeadline />,
+      },
+      {
+        path: "upload-demo",
+        element: <UploadResultDemo />,
       },
       {
         path: "class-routine",
-        element: <ClassRoutine />
+        element: <ClassRoutine />,
       },
       {
         path: "upload-assignment-for-student",
-        element: <UploadAssignmentForStudent />
+        element: <UploadAssignmentForStudent />,
       },
       {
         path: "online-class",
-        element: <OnlineClass />
+        element: <OnlineClass />,
       },
-    ]
-  }
+      {
+        path: "live-class",
+        element: <LiveClass />,
+      },
+    ],
+  },
 ]);
 
 export default router;
