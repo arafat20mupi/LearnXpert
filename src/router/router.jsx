@@ -29,6 +29,7 @@ import UploadAssignmentForStudent from "../Dashboard/StudenPannel/UploadAssignme
 import { OnlineClass } from "../Dashboard/StudenPannel/OnlineClass/OnlineClass";
 import UploadReacordedClass from "../Dashboard/UploadReacordedClass/UploadReacordedClass";
 import LiveClass from "../Dashboard/StudenPannel/LiveClass/LiveClass";
+import OnlinMeeting from "../Dashboard/ParentPannel/OnlinMeeting";
 // import ResultDemo from "../Pages/Result/ResultDemo";
 
 const router = createBrowserRouter([
@@ -159,6 +160,11 @@ const router = createBrowserRouter([
       {
         path: "live-class",
         element: <LiveClass />,
+      },
+      // parent role
+      {
+        path: "online-meeting",
+        element: <OnlinMeeting />,
       },
     ],
   },

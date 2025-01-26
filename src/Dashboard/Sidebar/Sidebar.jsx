@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import { SiGotomeeting } from "react-icons/si";
+
 import {
   FaAngleDown,
   FaAngleUp,
-  FaArrowAltCircleRight,
   FaChalkboardTeacher,
   FaPlus,
   FaUpload,
@@ -276,13 +277,13 @@ const Sidebar = ({ toggle, open }) => {
             {role === 'parent' && (
               <div>
                 <Link
-                  to="/deshboard/patent"
-                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10"
+                  to="/deshboard/online-meeting"
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-5"
                 >
                   <div className="text-green-500 bg-green-200 p-2 rounded-full">
-                    <PiStudentFill className="text-2xl" />
+                    <SiGotomeeting className="text-2xl" />
                   </div>
-                  <span>Students</span>
+                  <span>Online meeting</span>
                 </Link>
               </div>
             )}
