@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const ClassRoutine = () => {
     return (
         <div className='my-10'>

@@ -102,7 +102,7 @@ const Navbar = () => {
             Quiz
           </Link>
           <Link className="px-3 hover:text-slate-600 cursor-pointer hidden md:block">
-            <Link onClick={() => setisOpen(!isOpen)} to={user && role ? '/deshboard' : "/login"}>
+            <Link onClick={() => setisOpen(!isOpen)} to={user && role ? '/deshboard/deshboard' : "/login"}>
               <FaCircleUser className="text-2xl" />
             </Link>
           </Link>

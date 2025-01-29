@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaCloudUploadAlt } from 'react-icons/fa'
 
 const UploadAssignmentForStudent = () => {
@@ -28,66 +27,66 @@ const UploadAssignmentForStudent = () => {
         </label>
       </form>
       <h1 className='text-xl my-3 font-bold'>My recent Upload</h1>
-      <h2 class="text-2xl text-red-600">Sending Info</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-500 border border-slate-500">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-300">
+      <h2 className="text-2xl text-red-600">Sending Info</h2>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm text-left text-gray-500 border border-slate-500">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-300">
             <tr>
-              <th scope="col" class="px-6 py-3 border border-slate-500">
+              <th scope="col" className="px-6 py-3 border border-slate-500">
                 sender Name
               </th>
-              <th scope="col" class="px-6 py-3 border border-slate-500">
+              <th scope="col" className="px-6 py-3 border border-slate-500">
                 file name
               </th>
-              <th scope="col" class="px-6 py-3 border border-slate-500">
+              <th scope="col" className="px-6 py-3 border border-slate-500">
                 Staus
               </th>
-              <th scope="col" class="px-6 py-3 border border-slate-500">
+              <th scope="col" className="px-6 py-3 border border-slate-500">
                 time
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white">
-              <th scope="row" class="px-6 py-4 border border-slate-500 font-medium text-gray-900 whitespace-nowrap">
+            <tr className="bg-white">
+              <th scope="row" className="px-6 py-4 border border-slate-500 font-medium text-gray-900 whitespace-nowrap">
                 Nirob
               </th>
-              <td class="px-6 py-4 border border-slate-500">
+              <td className="px-6 py-4 border border-slate-500">
                 assignment.pdf
               </td>
-              <td class="px-6 py-4 border border-slate-500">
+              <td className="px-6 py-4 border border-slate-500">
                 <span className='text-white bg-green-500 py-2 px-4 rounded-lg'>received</span>
 
               </td>
-              <td class="px-6 py-4 border border-slate-500">
+              <td className="px-6 py-4 border border-slate-500">
                 24 days ago..
               </td>
             </tr>
-            <tr class="bg-white">
-              <th scope="row" class="px-6 py-4 border border-slate-500 font-medium text-gray-900 whitespace-nowrap">
+            <tr className="bg-white">
+              <th scope="row" className="px-6 py-4 border border-slate-500 font-medium text-gray-900 whitespace-nowrap">
               Nirob
               </th>
-              <td class="px-6 py-4 border border-slate-500">
+              <td className="px-6 py-4 border border-slate-500">
                 file.pdf
               </td>
-              <td class="px-6 py-4 border border-slate-500">
+              <td className="px-6 py-4 border border-slate-500">
               <span className='text-white bg-red-500 py-2 px-4 rounded-lg'>rejected</span>
               </td>
-              <td class="px-6 py-4 border border-slate-500">
+              <td className="px-6 py-4 border border-slate-500">
                 2 months ago..
               </td>
             </tr>
-            <tr class="bg-white">
-              <th scope="row" class="px-6 py-4 border border-slate-500 font-medium text-gray-900 whitespace-nowrap">
+            <tr className="bg-white">
+              <th scope="row" className="px-6 py-4 border border-slate-500 font-medium text-gray-900 whitespace-nowrap">
               Nirob
               </th>
-              <td class="px-6 py-4 border border-slate-500">
+              <td className="px-6 py-4 border border-slate-500">
                 file.pdf
               </td>
-              <td class="px-6 py-4 border border-slate-500">
+              <td className="px-6 py-4 border border-slate-500">
               <span className='text-white bg-green-500 py-2 px-4 rounded-lg'>received</span>
               </td>
-              <td class="px-6 py-4 border border-slate-500">
+              <td className="px-6 py-4 border border-slate-500">
                 9 months ago..
               </td>
             </tr>

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import emailjs from '@emailjs/browser';
-
+import { GiRunningNinja } from "react-icons/gi";
 
 const Admission = () => {
     const [admissionData, setAdmissionData] = useState([]);
-    console.log(admissionData);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const axios = useAxiosPublic();
@@ -14,90 +13,89 @@ const Admission = () => {
         const templateParams = {
             to_email: email,
             to_name: studentName,
-            message: "Congratulation. Your admission is confirmed", // custom message
+            message: "Congratulation. Your admission is confirmed",
         };
 
-        emailjs
-        .send("service_a0y6mrq", "template_s238gec", templateParams, "Ky7ONgXherTO2a529")
-        .then(
-            (response) => {
-                console.log("Email sent successfully!", response.status, response.text);
-                alert("Congratulations email sent successfully!");
-            },
-            (error) => {
-                console.error("Failed to send email:", error);
-                alert("Failed to send email. Please try again.");
-            }
-        );
+        emailjs.send("service_a0y6mrq", "template_s238gec", templateParams, "Ky7ONgXherTO2a529")
+            .then(
+                () => alert("Congratulations email sent successfully!"),
+                (error) => alert("Failed to send email. Please try again.")
+            );
     }
-   
-    const changeStatus = async(id, status, studentName, email) => {
+
+    const changeStatus = async (id, status, studentName, email) => {
         try {
-            if(status === "Pending"){
+            if (status === "Pending") {
                 const response = await axios.put(`/api/change-status/${id}`);
-                console.log(response.data);
                 setAdmissionData(response.data.update);
-                sendEmail(studentName, email)
+                sendEmail(studentName, email);
             }
         } catch (error) {
-            console.log(error.message);
+            console.error(error.message);
         }
     }
 
-     useEffect(() => {
+    useEffect(() => {
         const fetchAdmissionData = async () => {
-          try {
-            const response = await axios.get('/api/get-admission-data');
-            setAdmissionData(response.data.admission);
-          } catch (err) {
-            console.error(err);
-            setError("Failed to fetch students");
-          } finally {
-            setLoading(false);
-          }
+            try {
+                const response = await axios.get('/api/get-admission-data');
+                setAdmissionData(response.data.admission);
+            } catch (err) {
+                setError("Failed to fetch students");
+            } finally {
+                setLoading(false);
+            }
         };
-    
         fetchAdmissionData();
-      }, [axios]);
+    }, [axios]);
 
-  return (
-    <>
-        <table className="w-full text-left border-collapse border border-gray-300">
-            <thead>
-                <tr className="bg-gray-100">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Applying Class</th>
-                    <th>Guardian Name</th>
-                    <th>Guardian Contact</th>
-                    <th>Guardian Email</th>
-                    <th>Gender</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-               {
-                    admissionData?.map((item, i)=> {
-                        return(
-                           <tr key={i}>
-                                <td>{"00" + Number(i+1)}</td>
-                                <td>{item.studentName}</td>
-                                <td>{item.className}</td>
-                                <td>{item.guardianName}</td>
-                                <td>{item.guardianContact}</td>
-                                <td>{item.guardianEmail}</td>
-                                <td>{item.gender}</td>
-                                <td>
-                                    <button onClick={()=>changeStatus(item._id, item.status, item.studentName, item.guardianEmail)} className="px-3 py-1 bg-red-600 text-white rounded-full">{item.status}</button>
-                                </td>
-                           </tr>
-                        )
-                    })
-               }
-            </tbody>
-        </table>
-    </>
-  )
+    if (loading) {
+        return (
+            <div className="flex w-full items-center justify-center pt-20">
+                <GiRunningNinja className="text-[2.8rem] animate-bounce h-16 w-16 md:h-36 md:w-36 text-green-500" />
+            </div>
+        );
+    }
+
+    return (
+        <div className="overflow-x-auto p-5">
+            <table className="w-full border border-gray-200 shadow-lg rounded-lg overflow-hidden">
+                <thead className="bg-gray-800 text-white">
+                    <tr>
+                        <th className="px-4 py-3">ID</th>
+                        <th className="px-4 py-3">Name</th>
+                        <th className="px-4 py-3">Applying Class</th>
+                        <th className="px-4 py-3">Guardian Name</th>
+                        <th className="px-4 py-3">Guardian Contact</th>
+                        <th className="px-4 py-3">Guardian Email</th>
+                        <th className="px-4 py-3">Gender</th>
+                        <th className="px-4 py-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                    {admissionData?.map((item, i) => (
+                        <tr key={i} className="hover:bg-gray-100">
+                            <td className="px-4 py-3 text-center">{i + 1}</td>
+                            <td className="px-4 py-3">{item.studentName}</td>
+                            <td className="px-4 py-3 text-center">{item.className}</td>
+                            <td className="px-4 py-3">{item.guardianName}</td>
+                            <td className="px-4 py-3 text-center">{item.guardianContact}</td>
+                            <td className="px-4 py-3 text-center">{item.guardianEmail}</td>
+                            <td className="px-4 py-3 text-center">{item.gender}</td>
+                            <td className="px-4 py-3 text-center">
+                                <button 
+                                    onClick={() => changeStatus(item._id, item.status, item.studentName, item.guardianEmail)} 
+                                    className={`px-4 py-2 rounded-full text-white ${item.status === "Pending" ? "bg-red-500 hover:bg-red-700" : "bg-green-500 hover:bg-green-700"}`}
+                                >
+                                    {item.status}
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
 }
 
-export default Admission
+export default Admission;
