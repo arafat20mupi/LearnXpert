@@ -31,6 +31,7 @@ import { OnlineClass } from "../Dashboard/StudenPannel/OnlineClass/OnlineClass";
 import Admission from "../Dashboard/Admission/Admission";
 import UploadReacordedClass from "../Dashboard/UploadReacordedClass/UploadReacordedClass";
 import LiveClass from "../Dashboard/StudenPannel/LiveClass/LiveClass";
+import Deshboard from "../Dashboard/Deshboard/Deshboard";
 
 // import ResultDemo from "../Pages/Result/ResultDemo";
 
@@ -148,10 +149,6 @@ const router = createBrowserRouter([
         element: <UpdateHeadline />,
       },
       {
-        path: "upload-demo",
-        element: <UploadResultDemo />,
-      },
-      {
         path: "class-routine",
         element: <ClassRoutine />,
       },
@@ -167,6 +164,10 @@ const router = createBrowserRouter([
         path: "live-class",
         element: <LiveClass />,
       },
+      {
+        path: 'deshboard',
+        element: <Deshboard />
+      }
     ],
   },
 ]);

@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
 const Syllabus = () => {
