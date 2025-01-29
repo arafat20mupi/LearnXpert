@@ -1,5 +1,3 @@
-import React from "react";
-
 const UpdateHeadline = () => {
   return (
     <div className="h-[80vh] flex items-center justify-center mt-2">

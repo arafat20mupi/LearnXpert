@@ -23,13 +23,16 @@ import AttendanceTracking from "../Dashboard/AttendanceTracking/AttendanceTracki
 import ClassSchedule from "../Dashboard/ClassSchedule/ClassSchedule";
 import ReciveAssignment from "../Dashboard/ReciveAssignmenr/ReciveAssignment";
 import AllUsers from "../Dashboard/AllUsers/AllUsers";
-import UploadResultDemo from "../Dashboard/UploadResult/UploadResultDemo";
+
+
 import { ClassRoutine } from "../Dashboard/StudenPannel/ClassRoutine/ClassRoutine";
 import UploadAssignmentForStudent from "../Dashboard/StudenPannel/UploadAssignment/UploadAssignmentForStudent";
 import { OnlineClass } from "../Dashboard/StudenPannel/OnlineClass/OnlineClass";
+import Admission from "../Dashboard/Admission/Admission";
 import UploadReacordedClass from "../Dashboard/UploadReacordedClass/UploadReacordedClass";
 import LiveClass from "../Dashboard/StudenPannel/LiveClass/LiveClass";
-import OnlinMeeting from "../Dashboard/ParentPannel/OnlinMeeting";
+import Deshboard from "../Dashboard/Deshboard/Deshboard";
+
 // import ResultDemo from "../Pages/Result/ResultDemo";
 
 const router = createBrowserRouter([
@@ -99,6 +102,10 @@ const router = createBrowserRouter([
         path: "all-teacher",
         element: <AllTeacher />,
       },
+      {
+        path: "admission",
+        element: <Admission />
+      },
       ///Teacher access
       {
         path: "upload-result",
@@ -142,10 +149,6 @@ const router = createBrowserRouter([
         element: <UpdateHeadline />,
       },
       {
-        path: "upload-demo",
-        element: <UploadResultDemo />,
-      },
-      {
         path: "class-routine",
         element: <ClassRoutine />,
       },
@@ -161,11 +164,10 @@ const router = createBrowserRouter([
         path: "live-class",
         element: <LiveClass />,
       },
-      // parent role
       {
-        path: "online-meeting",
-        element: <OnlinMeeting />,
-      },
+        path: 'deshboard',
+        element: <Deshboard />
+      }
     ],
   },
 ]);
