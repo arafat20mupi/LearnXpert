@@ -1,5 +1,3 @@
-import React from 'react'
-
 const OnlinMeeting = () => {
     const classLink = "https://meet.google.com/cwf-vzhg-xnh";
     return (
