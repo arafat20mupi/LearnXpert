@@ -222,7 +222,7 @@ const Sidebar = ({ open }) => {
                     </Link>
                     <Link
                       to="/deshboard/upload-class-report"
-                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700 "
                     >
                       Class reports.
                     </Link>
