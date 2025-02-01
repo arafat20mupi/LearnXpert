@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import { SiGotomeeting } from "react-icons/si";
+
 import {
   FaAngleDown,
   FaAngleUp,
@@ -8,7 +10,7 @@ import {
   FaUpload,
 } from "react-icons/fa";
 import { HiAcademicCap } from "react-icons/hi2";
-import { MdOutlineOnlinePrediction, MdUpload } from "react-icons/md"
+import { MdOutlineOnlinePrediction, MdUpload } from "react-icons/md";
 import { IoMdHome } from "react-icons/io";
 import { PiStudentFill } from "react-icons/pi";
 import { RiParentFill } from "react-icons/ri";
@@ -18,7 +20,7 @@ import useRole from "../../Hooks/useRole";
 import { GiRunningNinja } from "react-icons/gi";
 import { AiTwotoneSchedule } from "react-icons/ai";
 
-const Sidebar = ({  open }) => {
+const Sidebar = ({ open }) => {
   const [adminToggle, setAdminToggle] = useState(false);
   const [TeacherToggle, setTeacherToggle] = useState(false);
 
@@ -28,7 +30,6 @@ const Sidebar = ({  open }) => {
   const handleTeacher = () => {
     setTeacherToggle(!TeacherToggle);
   };
-
 
   const { role, loading, error } = useRole();
 
@@ -44,7 +45,6 @@ const Sidebar = ({  open }) => {
     return <div>{error}</div>;
   }
 
-
   return (
     <div>
       <div
@@ -53,20 +53,18 @@ const Sidebar = ({  open }) => {
         }`}
       >
         <ul className="flex flex-col space-y-2">
-          <li className="flex items-center space-x-2 py-2 px-10 ml-auto">
-          </li>
+          <li className="flex items-center space-x-2 py-2 px-10 ml-auto"></li>
           <li className="text-center">
-            {role === 'admin' && "Admin Pannel"}
-            {role === 'student' && "Student Pannel"}
-            {role === 'parent' && "Parent Pannel"}
-            {role === 'teacher' && "Teacher Pannel"}
+            {role === "admin" && "Admin Pannel"}
+            {role === "student" && "Student Pannel"}
+            {role === "parent" && "Parent Pannel"}
+            {role === "teacher" && "Teacher Pannel"}
           </li>
 
           {/* for admin */}
 
           <div className="flex flex-col">
-            {role === 'admin' && (
-
+            {role === "admin" && (
               <div>
                 <Link
                   to="/"
@@ -102,21 +100,23 @@ const Sidebar = ({  open }) => {
                 </div>
                 {adminToggle && (
                   <ul className="select-none text-sm flex flex-col">
-                    
-                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                    <Link
+                      to=""
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                    >
                       Handle Fee&apos;s
                     </Link>
-                    <Link to="/deshboard/class-schedule" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                      Class Schedule
-                    </Link>
-                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                    <Link
+                      to=""
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                    >
                       Event Management
                     </Link>
-                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                    <Link
+                      to="/deshboard/online-meeting"
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                    >
                       Online Meeting
-                    </Link>
-                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                      Manage Library
                     </Link>
                   </ul>
                 )}
@@ -167,12 +167,11 @@ const Sidebar = ({  open }) => {
                 </Link>
               </div>
             )}
-
           </div>
 
           {/* for Teacher */}
           <div className="flex flex-col">
-            {role === 'teacher' && (
+            {role === "teacher" && (
               <div>
                 <div
                   onClick={handleTeacher}
@@ -191,29 +190,47 @@ const Sidebar = ({  open }) => {
 
                 {TeacherToggle && (
                   <ul className="select-none text-sm flex flex-col">
-                    <Link to="/deshboard/upload-assignment" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                    <Link
+                      to="/deshboard/upload-assignment"
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                    >
                       Upload Assignment
                     </Link>
-                    <Link to="/deshboard/recive-assignment" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                    <Link
+                      to="/deshboard/recive-assignment"
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                    >
                       Recive assignment
                     </Link>
-                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                    <Link
+                      to=""
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                    >
                       Online Exam
                     </Link>
-                    <Link to="/deshboard/class-schedule" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                      Class Schedule
-                    </Link>
-                    <Link to="/deshboard/upload-syllabus" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                    <Link
+                      to="/deshboard/upload-syllabus"
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                    >
                       Syllabus and lesson plans.
                     </Link>
-                    <Link to="/deshboard/attendance-tracking" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                    <Link
+                      to="/deshboard/attendance-tracking"
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                    >
                       Attendance Tracking
                     </Link>
-                    <Link to="/deshboard/upload-class-report" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
+                    <Link
+                      to="/deshboard/upload-class-report"
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700 "
+                    >
                       Class reports.
                     </Link>
-                    <Link to="" className="py-2 ml-10 transform cursor-pointer hover:text-gray-700">
-                      Online Class
+                    <Link
+                      to="/deshboard/live-class"
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                    >
+                      Live Class
                     </Link>
                   </ul>
                 )}
@@ -235,15 +252,13 @@ const Sidebar = ({  open }) => {
                   </div>
                   <span>Upload Result</span>
                 </Link>
-
-
               </div>
             )}
           </div>
 
           {/* for Student */}
           <div className="flex flex-col">
-            {role === 'student' && (
+            {role === "student" && (
               <div>
                 <Link
                   to="/deshboard/class-routine"
@@ -268,7 +283,7 @@ const Sidebar = ({  open }) => {
                   className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 duration-300"
                 >
                   <div className="text-red-500 bg-red-200 p-2 rounded-full">
-                    <AiTwotoneSchedule  className="text-xl"  />
+                    <AiTwotoneSchedule className="text-xl" />
                   </div>
                   <span>Class Schedule</span>
                 </Link>
@@ -296,22 +311,20 @@ const Sidebar = ({  open }) => {
 
           {/* for pre */}
           <div className="flex flex-col">
-            {role === 'parent' && (
+            {role === "parent" && (
               <div>
                 <Link
-                  to="/deshboard/patent"
+                  to="/deshboard/online-meeting"
                   className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 duration-300"
                 >
                   <div className="text-green-500 bg-green-200 p-2 rounded-full">
-                    <PiStudentFill className="text-2xl" />
+                    <SiGotomeeting className="text-2xl" />
                   </div>
-                  <span>Students</span>
+                  <span>Online meeting</span>
                 </Link>
               </div>
             )}
           </div>
-
-
         </ul>
       </div>
     </div>
