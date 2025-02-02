@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { SiGotomeeting } from "react-icons/si";
+import { ImProfile } from "react-icons/im";
 
 import {
   FaAngleDown,
@@ -48,7 +49,7 @@ const Sidebar = ({ open }) => {
   return (
     <div>
       <div
-        className={`fixed top-20 left-0  h-screen w-[200px] md:w-[270px] bg-white shadow-lg shadow-gray-200  transition-transform duration-300 ${
+        className={`overflow-y-scroll fixed top-20 left-0  h-screen pb-20 w-[200px] md:w-[270px] bg-white shadow-lg shadow-gray-200  transition-transform duration-300 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -101,7 +102,7 @@ const Sidebar = ({ open }) => {
                 {adminToggle && (
                   <ul className="select-none text-sm flex flex-col">
                     <Link
-                      to=""
+                      to="/deshboard/handle-fees"
                       className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
                     >
                       Handle Fee&apos;s
@@ -260,6 +261,24 @@ const Sidebar = ({ open }) => {
           <div className="flex flex-col">
             {role === "student" && (
               <div>
+                <Link
+                  to="/"
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 duration-300"
+                >
+                  <div className="text-blue-500 bg-blue-200 p-2 rounded-full">
+                    <IoMdHome className="text-2xl" />
+                  </div>
+                  <span>Home</span>
+                </Link>
+                <Link
+                  to="/deshboard/profile"
+                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 duration-300"
+                >
+                  <div className="text-green-500 bg-green-200 p-2 rounded-full">
+                    <ImProfile className="text-2xl" />
+                  </div>
+                  <span>Profile</span>
+                </Link>
                 <Link
                   to="/deshboard/class-routine"
                   className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 duration-300"

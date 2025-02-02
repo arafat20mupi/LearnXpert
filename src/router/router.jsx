@@ -32,6 +32,8 @@ import UploadReacordedClass from "../Dashboard/UploadReacordedClass/UploadReacor
 import LiveClass from "../Dashboard/StudenPannel/LiveClass/LiveClass";
 import Deshboard from "../Dashboard/Deshboard/Deshboard";
 import OnlinMeeting from "../Dashboard/onlineMeeting/OnlinMeeting";
+import Profile from "../Dashboard/StudenPannel/Profile/Profile";
+import HandleFees from "../Dashboard/handleFees/HandleFees";
 
 // import ResultDemo from "../Pages/Result/ResultDemo";
 
@@ -103,6 +105,10 @@ const router = createBrowserRouter([
         element: <AllTeacher />,
       },
       {
+        path: "handle-fees",
+        element: <HandleFees />,
+      },
+      {
         path: "admission",
         element: <Admission />,
       },
@@ -131,6 +137,10 @@ const router = createBrowserRouter([
       {
         path: "upload-syllabus",
         element: <Syllabus />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       {
         path: "upload-class-report",
