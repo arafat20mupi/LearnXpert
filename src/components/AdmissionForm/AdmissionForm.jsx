@@ -17,11 +17,11 @@ const AdmissionForm = () => {
       try {
           const response = await axios.post('/api/submit-admission-data', data);
           if (response.status === 200) {
-            toast.success('Marks uploaded successfully');
+            toast.success('Application submitted successfully');
             console.log(response.data.admissionData);
             reset();
           } else {
-            toast.error('Error uploading marks');
+            toast.error('Application not submitted successfully');
           }
           reset();
       } catch (error) {

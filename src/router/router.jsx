@@ -33,7 +33,9 @@ import LiveClass from "../Dashboard/StudenPannel/LiveClass/LiveClass";
 import Deshboard from "../Dashboard/Deshboard/Deshboard";
 import OnlinMeeting from "../Dashboard/onlineMeeting/OnlinMeeting";
 import Profile from "../Dashboard/StudenPannel/Profile/Profile";
-import HandleFees from "../Dashboard/handleFees/HandleFees";
+import PaymentDetails from "../Dashboard/PaymentDetails/PaymentDetails";
+import Success from "../components/Success/Success";
+import Cancel from "../components/Cancel/Cancel";
 
 // import ResultDemo from "../Pages/Result/ResultDemo";
 
@@ -78,6 +80,14 @@ const router = createBrowserRouter([
         path: "/admissionInfo",
         element: <AdmissionInfo />,
       },
+      {
+        path: "/success",
+        element: <Success />
+      },
+      {
+        path: "/cancel",
+        element: <Cancel />
+      }
     ],
   },
   {
@@ -106,7 +116,7 @@ const router = createBrowserRouter([
       },
       {
         path: "handle-fees",
-        element: <HandleFees />,
+        element: <PaymentDetails />,
       },
       {
         path: "admission",
