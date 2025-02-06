@@ -9,11 +9,11 @@ const Admission = () => {
     const [error, setError] = useState(null);
     const axios = useAxiosPublic();
 
-    const sendEmail = (studentName, email) => {
+    const sendEmail = (studentName, email, message) => {
         const templateParams = {
             to_email: email,
             to_name: studentName,
-            message: "Congratulation. Your admission is confirmed",
+            message: message,
         };
 
         emailjs.send("service_a0y6mrq", "template_s238gec", templateParams, "Ky7ONgXherTO2a529")
@@ -23,17 +23,30 @@ const Admission = () => {
             );
     }
 
-    const changeStatus = async (id, status, studentName, email) => {
+    const handleApprove = async (id, status, studentName, email) => {
         try {
             if (status === "Pending") {
-                const response = await axios.put(`/api/change-status/${id}`);
+                const response = await axios.put(`/api/admission-approve/${id}`);
                 setAdmissionData(response.data.update);
-                sendEmail(studentName, email);
+                sendEmail(studentName, email, "Congratulations! Your admission is confirmed.");
             }
         } catch (error) {
             console.error(error.message);
         }
-    }
+    };
+
+    const handleReject = async (id, status, studentName, email) => {
+        try {
+            if (status === "Pending") {
+                const response = await axios.put(`/api/admission-reject/${id}`);
+                setAdmissionData(response.data.update);
+                sendEmail(studentName, email, "Sorry! your admission is rejected");
+            }
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
 
     useEffect(() => {
         const fetchAdmissionData = async () => {
@@ -82,13 +95,22 @@ const Admission = () => {
                             <td className="px-4 py-3 text-center">{item.guardianContact}</td>
                             <td className="px-4 py-3 text-center">{item.guardianEmail}</td>
                             <td className="px-4 py-3 text-center">{item.gender}</td>
-                            <td className="px-4 py-3 text-center">
-                                <button 
-                                    onClick={() => changeStatus(item._id, item.status, item.studentName, item.guardianEmail)} 
-                                    className={`px-4 py-2 rounded-full text-white ${item.status === "Pending" ? "bg-red-500 hover:bg-red-700" : "bg-green-500 hover:bg-green-700"}`}
-                                >
-                                    {item.status}
-                                </button>
+                            <td className="px-4 py-3 text-center flex gap-1">
+
+                                {
+                                    item?.status === "Approved" ? 
+                                        <button className="bg-green-500 px-4 py-2 rounded-full text-white">Approved</button> : 
+                                        item.status === "Rejected" ? 
+                                        <button className="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-full text-white">Rejected</button> :
+                                    <>
+                                        <button>Pending</button>
+                                        <button className="bg-green-500 hover:bg-green-700 px-4 py-2 rounded-full text-white" onClick={()=>{handleApprove(item.id, item.status, item.studentName, item.guardianEmail)}}>Approve</button>
+                                        <button className="bg-red-500 hover:bg-red-700 px-6 py-2 rounded-full text-white" onClick={()=>handleReject(item._id, item.status, item.studentName, item.guardianEmail)}>Reject</button>
+                                    </>
+                                }
+                                {/* <button className={`px-4 py-2 rounded-full text-white ${item.status === "Pending" ? "bg-red-500" : "bg-green-500"}`}>{item.status}</button>
+                                <button onClick={()=>{handleApprove(item.id, item.status, item.studentName, item.guardianEmail)}} className="px-4 py-2 rounded-full text-white bg-green-500 hover:bg-green-700">Approve</button>
+                                <button className="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-full text-white" onClick={()=>handleReject(item._id, item.status, item.studentName, item.guardianEmail)}>Reject</button> */}
                             </td>
                         </tr>
                     ))}
