@@ -5,28 +5,31 @@ import { toast } from 'react-hot-toast';
 const PaymentDetails = () => {
   const axios = useAxiosPublic();
   const [students, setStudents] = useState(null);
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [duePayment, setDuePayment] = useState(0);
-  const [selectedClass, setSelectedClass] = useState("6");
+  const [selectedClass, setSelectedClass] = useState("6")
 
-  
-  const handlePayment = async(name, className, rollNo, email, firebaseUid) => {
-      try {
-        const paymentDetail = {name, className, rollNo, email, firebaseUid, month, year, duePayment};
-        console.log(paymentDetail);
-        const response = await axios.post("/api/post-payment", {paymentDetail});
-        if(response.status === 200){
-            toast.success(response?.data?.message);
-        }else{
-            toast.error(response?.data?.message);
-        }
-        console.log(response);
-      } catch (error) {
-          console.log(error.message);
+  const [studentMonth, setStudentMonth] = useState("");
+  const [studentYear, setStudentYear] = useState('');
+  const [studentDuePayment, setStudentDuePayment] = useState(0);
+  const handlePayment = async (name, className, rollNo, email, firebaseUid, month, year, duePayment) => {
+    try {
+      if (!month || !year || !duePayment) {
+        toast.error("Please fill all fields");
+        return;
       }
+      const paymentDetail = { name, className, rollNo, email, firebaseUid, month, year, duePayment };
+      const response = await axios.post("/api/post-payment", { paymentDetail });
+      console.log(response);
+      if (response.status === 200) {
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+      console.log(response);
+    } catch (error) {
+      toast.error('Failed to add payment');
+      console.log(error.message);
+    }
   }
-
 
   const fetchStudents = async () => {
     try {
@@ -77,71 +80,64 @@ const PaymentDetails = () => {
                 <th className="px-16 md:p-3 border border-gray-300">Phone</th>
                 <th className="px-16 md:p-3 border border-gray-300">Address</th>
                 <th className="px-16 md:p-3 border border-gray-300">Month</th>
+                <th className="px-16 md:p-3 border border-gray-300">Year</th>
                 <th className="px-16 md:p-3 border border-gray-300">Amount</th>
                 <th className="px-16 md:p-3 border border-gray-300">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {students?.map((item, index) => (
-                <tr key={index}>
-                  <td className="p-3 border border-gray-300">{item.name}</td>
-                  <td className="p-3 border border-gray-300">
-                    {item.className}
-                  </td>
-                  <td className="p-3 border border-gray-300">
-                    {item.rollNo}
-                  </td>
-                  <td className="p-3 border border-gray-300">{item.email}</td>
-                  <td className="p-3 border border-gray-300">{item.phone}</td>
-                  <td className="p-3 border border-gray-300">{item.address}</td>
-                  <td className="p-3 border border-gray-300">
-                  
+              {students?.map((item, index) => {
 
-                  <select onChange={(e)=>setMonth(e.target.value)} value={month}>
-                      <option value="">Select Month</option>
-                      <option value="january">January</option>
-                      <option value="february">February</option>
-                      <option value="march">March</option>
-                      <option value="april">April</option>
-                      <option value="may">May</option>
-                      <option value="june">June</option>
-                      <option value="july">July</option>
-                  </select>
-
-
-
-                  </td>
-                  <td className="p-3 border border-gray-300">
-                  
-                  
-
-                   <select onChange={(e)=>setYear(e.target.value)} value={year}>
-                          <option value={year}>
-                              {
-                                new Date().getFullYear()
-                              }
-                          </option>
-                  </select> 
-
-
-
-                  </td>
-                  <td className="p-3 border border-gray-300">
-                    <input
-                      type="number"
-                      placeholder="Enter ammount"
-                      onChange={((e) => setDuePayment(e.target.value))}
-                      value={duePayment}
-                      className="w-full md:w-[200px] px-4 py-2 rounded-md ring-gray-300 ring-1 focus:ring-2 focus:ring-blue-500 duration-300 outline-0"
-                    />
-                  </td>
-                  <td>
-                    <button onClick={()=>{handlePayment(item.name,item.className, item.rollNo, item.email, item.firebaseUid)}} className="px-5 py-2 rounded-full bg-green-500 hover:bg-green-600 duration-200 text-white mx-5">
-                      Send
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                return (
+                  <tr key={index}>
+                    <td className="p-3 border border-gray-300">{item.name}</td>
+                    <td className="p-3 border border-gray-300">{item.className}</td>
+                    <td className="p-3 border border-gray-300">{item.rollNo}</td>
+                    <td className="p-3 border border-gray-300">{item.email}</td>
+                    <td className="p-3 border border-gray-300">{item.phone}</td>
+                    <td className="p-3 border border-gray-300">{item.address}</td>
+                    <td className="p-3 border border-gray-300">
+                      <select onChange={(e) => setStudentMonth(e.target.value)} value={studentMonth}>
+                        <option value="january">January</option>
+                        <option value="february">February</option>
+                        <option value="march">March</option>
+                        <option value="april">April</option>
+                        <option value="may">May</option>
+                        <option value="june">June</option>
+                        <option value="july">July</option>
+                        <option value="august">August</option>
+                        <option value="september">September</option>
+                        <option value="october">October</option>
+                        <option value="november">November</option>
+                        <option value="december">December</option>
+                      </select>
+                    </td>
+                    <td className="p-3 border border-gray-300">
+                      <select onChange={(e) => setStudentYear(e.target.value)} value={studentYear}>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                      </select>
+                    </td>
+                    <td className="p-3 border border-gray-300">
+                      <input
+                        type="number"
+                        placeholder="Enter amount"
+                        onChange={(e) => setStudentDuePayment(e.target.value)}
+                        value={studentDuePayment}
+                        className="w-full md:w-[200px] px-4 py-2 rounded-md ring-gray-300 ring-1 focus:ring-2 focus:ring-blue-500 duration-300 outline-0"
+                      />
+                    </td>
+                    <td>
+                      <button onClick={() => { handlePayment(item.name, item.className, item.rollNo, item.email, item.firebaseUid, studentMonth, studentYear, studentDuePayment) }} className="px-5 py-2 rounded-full bg-green-500 hover:bg-green-600 duration-200 text-white mx-5">
+                        Send
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
