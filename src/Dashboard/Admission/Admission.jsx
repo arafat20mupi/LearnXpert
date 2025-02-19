@@ -104,7 +104,7 @@ const Admission = () => {
                                         <button className="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-full text-white">Rejected</button> :
                                     <>
                                         <button>Pending</button>
-                                        <button className="bg-green-500 hover:bg-green-700 px-4 py-2 rounded-full text-white" onClick={()=>{handleApprove(item.id, item.status, item.studentName, item.guardianEmail)}}>Approve</button>
+                                        <button className="bg-green-500 hover:bg-green-700 px-4 py-2 rounded-full text-white" onClick={()=>{handleApprove(item._id, item.status, item.studentName, item.guardianEmail)}}>Approve</button>
                                         <button className="bg-red-500 hover:bg-red-700 px-6 py-2 rounded-full text-white" onClick={()=>handleReject(item._id, item.status, item.studentName, item.guardianEmail)}>Reject</button>
                                     </>
                                 }
