@@ -47,7 +47,7 @@ const StudentProfile = () => {
     const stripe = await loadStripe("pk_test_51QPkuRGLRxtB32IDebIxkMEvw5raa70RYN0qrXmk5R3gcXVJtl2o3PZoYFwvXrsvQQod1HftIp4TvyfIMs9wq4qD00BoDzot7v");
     const info = { name: paymentDetail?.name, firebaseUid: paymentDetail?.firebaseUid, email: paymentDetail?.email, month, year, duePayment }
 
-    const response = await axios.post('http://localhost:5000/api/checkout', { info });
+    const response = await axios.post('/api/checkout', { info });
     const data = await response.data;
 
     stripe.redirectToCheckout({
@@ -55,6 +55,7 @@ const StudentProfile = () => {
     });
 
   }
+  console.log(paymentDetail)
 
   return (
     <div className="bg-gray-100 py-10">
