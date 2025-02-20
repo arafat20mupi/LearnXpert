@@ -50,7 +50,7 @@ const StudentProfile = () => {
     const response = await axios.post('/api/checkout', { info });
     const data = await response.data;
 
-    stripe.redirectToCheckout({
+    const result = stripe.redirectToCheckout({
       sessionId: data.id
     });
 
@@ -110,7 +110,7 @@ const StudentProfile = () => {
                 {info.month.toUpperCase()} {info.year}
               </h2>
               <h3 className="text-lg text-gray-600">{info.duePayment} BDT</h3>
-              <h3>Status : {info.status}</h3>
+              <h3>Status : {info?.status}</h3>
               {
                 info.status === "Pending" && <button className="bg-green-500 text-white px-3" onClick={() => { handlePayment(info.month, info.year, info.duePayment) }}>Pay now</button>
               }
