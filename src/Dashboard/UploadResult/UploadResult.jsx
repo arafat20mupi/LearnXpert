@@ -17,6 +17,7 @@ const [selectedStudent , setSelectedStudent] = useState([]);
         const response = await axios.get(`/api/students/${selectClass}`);
         if (response.status === 200) {
           setStudents(response.data);
+          console.log(response.data);
         } else {
           setStudents([]);
         }
@@ -31,6 +32,7 @@ const [selectedStudent , setSelectedStudent] = useState([]);
   console.log(students);
 
   const onSubmit = async (data, student) => {
+    console.log(data);
     console.log(student);
     data.studentId = student.firebaseUid;
     data.name = student.name;

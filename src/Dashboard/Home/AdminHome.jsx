@@ -1,4 +1,3 @@
-import React from "react";
 import { PiStudentFill } from "react-icons/pi";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
