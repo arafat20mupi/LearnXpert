@@ -122,6 +122,7 @@ const router = createBrowserRouter([
         path: "admission",
         element: <Admission />,
       },
+      
       ///Teacher access
       {
         path: "upload-result",
@@ -151,6 +152,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+          path: "class-routine",
+          element: <ClassRoutine />
       },
       {
         path: "upload-class-report",
