@@ -1,0 +1,226 @@
+[
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "question": "What is the national flower of Bangladesh?",
+    "correct_answer": "Water Lily",
+    "options": ["Water Lily", "Rose", "Lotus", "Sunflower"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "question": "Who is the Father of the Nation in Bangladesh?",
+    "correct_answer": "Sheikh Mujibur Rahman",
+    "options": ["Sheikh Mujibur Rahman", "Ziaur Rahman", "Hossain Mohammad Ershad", "Kazi Nazrul Islam"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "General Knowledge",
+    "question": "Which year did Bangladesh gain independence?",
+    "correct_answer": "1971",
+    "options": ["1971", "1970", "1969", "1980"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "General Knowledge",
+    "question": "What is the capital city of Bangladesh?",
+    "correct_answer": "Dhaka",
+    "options": ["Dhaka", "Chittagong", "Rajshahi", "Sylhet"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "question": "Which river is known as the lifeline of Bangladesh?",
+    "correct_answer": "Padma River",
+    "options": ["Padma River", "Jamuna River", "Meghna River", "Teesta River"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "General Knowledge",
+    "question": "Who is the first president of Bangladesh?",
+    "correct_answer": "Sheikh Mujibur Rahman",
+    "options": ["Sheikh Mujibur Rahman", "Ziaur Rahman", "Hossain Mohammad Ershad", "Abdul Hamid"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science",
+    "question": "What is the chemical symbol for water?",
+    "correct_answer": "H2O",
+    "options": ["H2O", "CO2", "O2", "NaCl"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science",
+    "question": "Which planet is known for having a large red spot?",
+    "correct_answer": "Jupiter",
+    "options": ["Jupiter", "Saturn", "Neptune", "Mars"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science",
+    "question": "What is the main gas found in the Earth's atmosphere?",
+    "correct_answer": "Nitrogen",
+    "options": ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science",
+    "question": "What is the speed of light?",
+    "correct_answer": "299,792 kilometers per second",
+    "options": ["299,792 kilometers per second", "150,000 kilometers per second", "300,000 kilometers per second", "350,000 kilometers per second"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "History",
+    "question": "Who was the first Mughal emperor?",
+    "correct_answer": "Babur",
+    "options": ["Babur", "Akbar", "Shah Jahan", "Aurangzeb"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "History",
+    "question": "What year did the Bangladesh Liberation War begin?",
+    "correct_answer": "1971",
+    "options": ["1971", "1969", "1980", "1952"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "History",
+    "question": "Who was the first woman Prime Minister of Bangladesh?",
+    "correct_answer": "Khaleda Zia",
+    "options": ["Khaleda Zia", "Sheikh Hasina", "Begum Khaleda Zia", "Fatima Jinnah"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Sports",
+    "question": "Which sport is played in the Indian Premier League (IPL)?",
+    "correct_answer": "Cricket",
+    "options": ["Cricket", "Football", "Hockey", "Tennis"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Sports",
+    "question": "Who won the 2018 FIFA World Cup?",
+    "correct_answer": "France",
+    "options": ["France", "Brazil", "Germany", "Argentina"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Sports",
+    "question": "Who is known as the 'Little Master' of Indian cricket?",
+    "correct_answer": "Sachin Tendulkar",
+    "options": ["Sachin Tendulkar", "Virat Kohli", "Sunil Gavaskar", "Ricky Ponting"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Geography",
+    "question": "Which country is the largest by area in the world?",
+    "correct_answer": "Russia",
+    "options": ["Russia", "Canada", "China", "United States"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geography",
+    "question": "What is the capital of Japan?",
+    "correct_answer": "Tokyo",
+    "options": ["Tokyo", "Kyoto", "Osaka", "Hokkaido"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geography",
+    "question": "Which is the largest continent?",
+    "correct_answer": "Asia",
+    "options": ["Asia", "Africa", "Europe", "North America"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geography",
+    "question": "Which ocean is the largest by area?",
+    "correct_answer": "Pacific Ocean",
+    "options": ["Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Literature",
+    "question": "Who wrote the famous novel '1984'?",
+    "correct_answer": "George Orwell",
+    "options": ["George Orwell", "Aldous Huxley", "Ernest Hemingway", "J.K. Rowling"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Literature",
+    "question": "Who wrote 'One Hundred Years of Solitude'?",
+    "correct_answer": "Gabriel García Márquez",
+    "options": ["Gabriel García Márquez", "Mario Vargas Llosa", "Pablo Neruda", "Isabel Allende"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Literature",
+    "question": "What is the title of the first book of the Harry Potter series?",
+    "correct_answer": "Harry Potter and the Philosopher's Stone",
+    "options": ["Harry Potter and the Philosopher's Stone", "Harry Potter and the Chamber of Secrets", "Harry Potter and the Prisoner of Azkaban", "Harry Potter and the Goblet of Fire"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Literature",
+    "question": "Who is the author of 'The Alchemist'?",
+    "correct_answer": "Paulo Coelho",
+    "options": ["Paulo Coelho", "J.R.R. Tolkien", "F. Scott Fitzgerald", "Leo Tolstoy"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "question": "What is the value of Pi (π) approximately?",
+    "correct_answer": "3.14159",
+    "options": ["3.14159", "3.14", "22/7", "3.1416"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Mathematics",
+    "question": "What is the square root of 256?",
+    "correct_answer": "16",
+    "options": ["16", "14", "18", "20"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "question": "What is 25% of 200?",
+    "correct_answer": "50",
+    "options": ["50", "40", "30", "60"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "question": "What is 7 multiplied by 8?",
+    "correct_answer": "56",
+    "options": ["56", "58", "54", "60"]
+  }
+]
