@@ -7,6 +7,7 @@ import Quiz from "../components/Quiz/Quiz";
 import Register from "../components/Register/Register";
 import Login from "../components/Login/Login";
 import QuizClasses from "../components/Quiz-Classes/QuizClasses";
+import QuizResult from "../components/Quiz-Classes/QuizResult";
 import AdmissionForm from "../components/AdmissionForm/AdmissionForm";
 import AdmissionInfo from "../components/AdmissionInfo/AdmissionInfo";
 import AdminHome from "../Dashboard/Home/AdminHome";
@@ -69,8 +70,12 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/quiz-classes",
+        path: "quiz/:id",
         element: <QuizClasses />,
+      },
+      {
+        path: "quiz-result",
+        element: <QuizResult />,
       },
       {
         path: "/admission",
