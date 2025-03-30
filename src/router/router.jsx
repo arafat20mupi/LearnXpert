@@ -37,6 +37,7 @@ import Profile from "../Dashboard/StudenPannel/Profile/Profile";
 import PaymentDetails from "../Dashboard/PaymentDetails/PaymentDetails";
 import Success from "../components/Success/Success";
 import Cancel from "../components/Cancel/Cancel";
+import PostOnlineClass from "../Dashboard/OnlineClass/OnlineClass";
 
 // import ResultDemo from "../Pages/Result/ResultDemo";
 
@@ -74,7 +75,7 @@ const router = createBrowserRouter([
         element: <QuizClasses />,
       },
       {
-        path: "quiz-result",
+        path: "/quiz-result",
         element: <QuizResult />,
       },
       {
@@ -202,6 +203,10 @@ const router = createBrowserRouter([
         path: "deshboard",
         element: <Deshboard />,
       },
+      {
+        path:'PostOnlineClass',
+        element: <PostOnlineClass />
+      }
     ],
   },
 ]);

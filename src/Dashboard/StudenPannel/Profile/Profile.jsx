@@ -10,12 +10,12 @@ const StudentProfile = () => {
   const [paymentDetail, setPaymentDetail] = useState({});
   const axios = useAxiosPublic();
 
-
+console.log(user)
 
   const getCurrentUser = async () => {
     try {
       const response = await axios(`/api/get-single-student/${user?.uid}`);
-      const data = await response?.data;
+      const data = await response?.data?.students;
       setUserDetail(data);
     } catch (error) {
       console.log(error.message);
@@ -84,12 +84,16 @@ const StudentProfile = () => {
                 <span className="text-gray-600">{userDetail?.className}</span>
               </div>
               <div className="flex justify-between">
-                <span className="font-medium text-gray-700">Roll No:</span>
+                <span className="font-medium text-gray-700">Roll No:</span> 
                 <span className="text-gray-600">{userDetail?.rollNo}</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-medium text-gray-700">Address:</span>
-                <span className="text-gray-600">{userDetail?.email}</span>
+                <span className="text-gray-600 ml-1">{userDetail?.email}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium text-gray-700">QuizScore:</span>
+                <span className="text-gray-600 ml-1">{userDetail?.quizScore?.score}</span>
               </div>
             </div>
           </div>
