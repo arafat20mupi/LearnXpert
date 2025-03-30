@@ -1,82 +1,137 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useRole from "../../../Hooks/useRole";
 
 export const OnlineClass = () => {
-  const classes = [
-    {
-      title: "Class 1",
-      lectures: [
-        { title: "Lecture 1", link: "nfwZ7derrr4?si=Bg6EJr213PGeKIoE" },
-        { title: "Lecture 2", link: "7fqxe09MD_A?si=sTEyTV7gngeZP7ts" },
-        { title: "Lecture 3", link: "o2-pEfyQIwg?si=Tmgo4WKXAg5-oh_I" },
-      ],
-    },
-    {
-      title: "Class 2",
-      lectures: [
-        { title: "Lecture 1", link: "IFC9KEYCdbE?si=_BDIJHQKjLUeYlg8" },
-        { title: "Lecture 2", link: "o2-pEfyQIwg?si=Tmgo4WKXAg5-oh_I" },
-        { title: "Lecture 3", link: "nfwZ7derrr4?si=Bg6EJr213PGeKIoE" },
-      ],
-    },
-  ];
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [lecture, setLecture] = useState(classes[0].lectures[0].link);
+  const { user } = useContext(AuthContext);
+  const [userDetail, setUserDetail] = useState(null);
+  const [classes, setClasses] = useState([]);
+  const [openChapter, setOpenChapter] = useState(null);
+  const [currentVideo, setCurrentVideo] = useState(null);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(null);
+  const axios = useAxiosPublic();
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  // Fetch user details
+  useEffect(() => {
+    if (!user) return;
+    const fetchUserDetail = async () => {
+      try {
+        const response = await axios(`/api/get-single-student/${user.uid}`);
+        setUserDetail(response.data.students || {});
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+    fetchUserDetail();
+  }, [user]);
+
+  // Fetch classes
+  useEffect(() => {
+    if (!userDetail?.className) return;
+    const fetchClasses = async () => {
+      try {
+        const response = await axios(`/api/classes/${userDetail.className}`);
+        setClasses(response.data || []);
+      } catch (error) {
+        console.error("Error fetching classes:", error);
+      }
+    };
+    fetchClasses();
+  }, [userDetail]);
+
+  // Toggle chapter visibility
+  const toggleChapter = (chapterId) => {
+    setOpenChapter(openChapter === chapterId ? null : chapterId);
+  };
+
+  // Play selected video
+  const playVideo = (videoUrl, index) => {
+    setCurrentVideo(videoUrl);
+    setCurrentVideoIndex(index);
+  };
+
+  // Handle next & previous video
+  const handleNextVideo = () => {
+    if (currentVideoIndex !== null) {
+      const nextIndex = currentVideoIndex + 1;
+      const nextVideo = classes.find((c) => c._id === openChapter)?.part[nextIndex];
+      if (nextVideo) {
+        playVideo(nextVideo.videoUrl, nextIndex);
+      }
+    }
+  };
+
+  const handlePreviousVideo = () => {
+    if (currentVideoIndex !== null && currentVideoIndex > 0) {
+      const prevIndex = currentVideoIndex - 1;
+      const prevVideo = classes.find((c) => c._id === openChapter)?.part[prevIndex];
+      if (prevVideo) {
+        playVideo(prevVideo.videoUrl, prevIndex);
+      }
+    }
   };
 
   return (
-    <div className="my-6 px-4">
-      <h1 className="text-xl md:text-2xl font-semibold my-4">
-        Class Title: Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-      </h1>
-      <div className="flex flex-col md:flex-row justify-between gap-5">
-        <div className="flex justify-center w-full md:w-[60%]">
-          <iframe
-            width="100%"
-            height="315"
-            src={`https://www.youtube.com/embed/${lecture}`}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
+    <div className="p-6 max-w-6xl mx-auto">
+      <h2 className="text-2xl font-bold mb-4">Online Classes</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Chapter List */}
+        <div className="border p-4 rounded-lg shadow col-span-1">
+          {classes.length === 0 ? (
+            <p>No classes available</p>
+          ) : (
+            classes.map((classItem) => (
+              <div key={classItem._id} className="mb-4 border p-4 rounded-lg shadow">
+                <div
+                  className="flex justify-between items-center cursor-pointer"
+                  onClick={() => toggleChapter(classItem._id)}
+                >
+                  <h3 className="text-lg font-semibold">Chapter {classItem.chapter}: {classItem.title}</h3>
+                  {openChapter === classItem._id ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                </div>
+                {openChapter === classItem._id && (
+                  <div className="grid grid-cols-1 gap-4 mt-2">
+                    {classItem.part.map((video, index) => (
+                      <div
+                        key={video._id}
+                        className="p-2 border rounded cursor-pointer hover:bg-gray-200"
+                        onClick={() => playVideo(video.videoUrl, index)}
+                      >
+                        {video.title}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))
+          )}
         </div>
-        <div className="w-full md:w-[40%] overflow-y-scroll h-[52vh] p-3 ring-2 ring-gray-300 rounded-md bg-white">
-          <div className="mb-2">
-            <div
-              className="flex items-center gap-4 bg-white px-4 py-3 ring-1 ring-gray-300 rounded-md text-xl text-black cursor-pointer hover:bg-orange-50 duration-200"
-              onClick={toggleDropdown}
-            >
-              {isDropdownOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
-              <span>Class 1</span>
-            </div>
-            <div
-              className={`transition-all bg-white duration-500 ease-in-out overflow-hidden ${
-                isDropdownOpen
-                  ? "h-auto max-h-[500px] ring-1 rounded ring-gray-300"
-                  : "max-h-0 ring-0"
-              }`}
-            >
-              <ul className="space-y-3">
-                {classes[0].lectures.map((lecture, index) => {
-                  return (
-                    <li
-                      key={index}
-                      className="hover:bg-orange-500 duration-300 px-5 py-2 rounded cursor-pointer"
-                      onClick={() => setLecture(lecture.link)}
-                    >
-                      {lecture.title}
-                    </li>
-                  );
-                })}
-              </ul>
+
+        {/* Video Player */}
+        {currentVideo && (
+          <div className="col-span-2 border p-4 rounded-lg shadow-lg">
+            <video src={currentVideo} controls className="w-full rounded-lg" />
+            <div className="flex justify-between mt-2">
+              <button
+                onClick={handlePreviousVideo}
+                className="btn btn-primary disabled:opacity-50"
+                disabled={currentVideoIndex === 0}
+              >
+                Previous
+              </button>
+              <button
+                onClick={handleNextVideo}
+                className="btn btn-primary disabled:opacity-50"
+                disabled={currentVideoIndex === null ||
+                  currentVideoIndex >= classes.find((c) => c._id === openChapter)?.part.length - 1}
+              >
+                Next
+              </button>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

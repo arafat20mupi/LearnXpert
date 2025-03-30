@@ -1,288 +1,184 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const ClassSchedule = () => {
-    const [selectClass, setselectClass] = useState('6')
-    const class_7 = [
-        {
-            day: "Monday",
-            schedule: [
-                { time: "11:30-12:15 PM", subject: "Math" },
-                { time: "10:00-10:45 AM", subject: "English" },
-                { time: "12:15-01:00 PM", subject: "Science" },
-                { time: "01:45-02:30 PM", subject: "ICT" },
-                { time: "01:00-01:45 PM", subject: "History" },
-                { time: "10:45-11:30 AM", subject: "Bangla" },
-            ],
-        },
-        {
-            day: "Tuesday",
-            schedule: [
-                { time: "10:45-11:30 AM", subject: "Science" },
-                { time: "12:15-01:00 PM", subject: "ICT" },
-                { time: "10:00-10:45 AM", subject: "Math" },
-                { time: "11:30-12:15 PM", subject: "History" },
-                { time: "01:45-02:30 PM", subject: "Bangla" },
-                { time: "01:00-01:45 PM", subject: "English" },
-            ],
-        },
-        {
-            day: "Wednesday",
-            schedule: [
-                { time: "10:00-10:45 AM", subject: "Science" },
-                { time: "12:15-01:00 PM", subject: "English" },
-                { time: "11:30-12:15 PM", subject: "ICT" },
-                { time: "01:45-02:30 PM", subject: "Math" },
-                { time: "10:45-11:30 AM", subject: "History" },
-                { time: "01:00-01:45 PM", subject: "Bangla" },
-            ],
-        },
-        {
-            day: "Thursday",
-            schedule: [
-                { time: "10:00-10:45 AM", subject: "History" },
-                { time: "10:45-11:30 AM", subject: "ICT" },
-                { time: "12:15-01:00 PM", subject: "Bangla" },
-                { time: "01:45-02:30 PM", subject: "Science" },
-                { time: "01:00-01:45 PM", subject: "Math" },
-                { time: "11:30-12:15 PM", subject: "English" },
-            ],
-        },
-        {
-            day: "Sunday",
-            schedule: [
-                { time: "10:45-11:30 AM", subject: "English" },
-                { time: "10:00-10:45 AM", subject: "ICT" },
-                { time: "12:15-01:00 PM", subject: "Math" },
-                { time: "01:00-01:45 PM", subject: "Science" },
-                { time: "11:30-12:15 PM", subject: "Bangla" },
-                { time: "01:45-02:30 PM", subject: "History" },
-            ],
-        },
+    const [selectClass, setSelectClass] = useState('6');
+    const { register, handleSubmit, reset } = useForm();
+    const [data, setData] = useState({});
+    const axios = useAxiosPublic();
+    const [year, setYear] = useState(new Date().getFullYear());
+    const years = Array.from({ length: 30 }, (_, i) => 2025 + i);
+   
+
+    const classTime = [
+        "10:00-10:45 AM", "11:30-12:15 PM", "12:15-1:00 PM", 
+        "1:00-1:45 PM", "1:45-2:30 PM", "2:30-3:15 PM", "3:15-4:00 PM"
     ];
-    const class_6 = [
-        {
-            day: "Monday",
-            schedule: [
-                { time: "10:00-10:45 AM", subject: "English" },
-                { time: "10:45-11:30 AM", subject: "Bangla" },
-                { time: "11:30-12:15 PM", subject: "Math" },
-                { time: "12:15-01:00 PM", subject: "Science" },
-                { time: "01:00-01:45 PM", subject: "History" },
-                { time: "01:45-02:30 PM", subject: "ICT" },
-            ],
-        },
-        {
-            day: "Tuesday",
-            schedule: [
-                { time: "10:00-10:45 AM", subject: "Math" },
-                { time: "10:45-11:30 AM", subject: "Science" },
-                { time: "11:30-12:15 PM", subject: "History" },
-                { time: "12:15-01:00 PM", subject: "ICT" },
-                { time: "01:00-01:45 PM", subject: "English" },
-                { time: "01:45-02:30 PM", subject: "Bangla" },
-            ],
-        },
-        {
-            day: "Wednesday",
-            schedule: [
-                { time: "10:00-10:45 AM", subject: "Science" },
-                { time: "10:45-11:30 AM", subject: "History" },
-                { time: "11:30-12:15 PM", subject: "ICT" },
-                { time: "12:15-01:00 PM", subject: "English" },
-                { time: "01:00-01:45 PM", subject: "Bangla" },
-                { time: "01:45-02:30 PM", subject: "Math" },
-            ],
-        },
-        {
-            day: "Thursday",
-            schedule: [
-                { time: "10:00-10:45 AM", subject: "History" },
-                { time: "10:45-11:30 AM", subject: "ICT" },
-                { time: "11:30-12:15 PM", subject: "English" },
-                { time: "12:15-01:00 PM", subject: "Bangla" },
-                { time: "01:00-01:45 PM", subject: "Math" },
-                { time: "01:45-02:30 PM", subject: "Science" },
-            ],
-        },
-        {
-            day: "Sunday",
-            schedule: [
-                { time: "10:00-10:45 AM", subject: "ICT" },
-                { time: "10:45-11:30 AM", subject: "English" },
-                { time: "11:30-12:15 PM", subject: "Bangla" },
-                { time: "12:15-01:00 PM", subject: "Math" },
-                { time: "01:00-01:45 PM", subject: "Science" },
-                { time: "01:45-02:30 PM", subject: "History" },
-            ],
-        },
-    ];
+    const subjects = ["Bangla", "English", "Math", "Science", "History", "Biology", "Chemistry"];
+
+    const onSubmit = async(data) => {
+        const allData = {
+            className: selectClass,
+            year: year,
+            day: data.day,
+            schedules: classTime.map((time, index) => ({
+                time,
+                subject: data.subjects[index] || "", // Handle empty selections
+            })),
+        };
+    
+
+        try {
+            const response = await axios.post('/api/post-class-schedule', allData);
+
+            if(response){
+                toast.success(response.data.message);
+                setSelectClass("6");
+                reset();
+            }else{
+                toast.error("Error uploading class schedule");
+            }
+        } catch (error) {
+            toast.error(error.response.data.message)
+        }
+        
+    };
+
+    const getAllClassSchedule = async() => {
+        try {
+            const response = await axios(`/api/get-single-class-schedule/?className=${selectClass}&year=${year}`);
+
+            if(response){
+                setData(response?.data?.getSchedule);
+            }else{
+                setData({});
+            }
+        } catch (error) {
+            if(error.response){
+                setData({});
+            }
+        }
+    }
+
+    const deleteDaySchedule = async(day) => {
+        console.log(day);
+        try {
+            const response = await axios.delete(`/api/delete-class-day-schedule/${day}`);
+
+            if(response){
+                toast.success(response.data.message);
+                getAllClassSchedule();
+            }else{
+                toast.error("Day schedule cannot be deleted");
+            }
+
+        } catch (error) {
+            toast.error("Day schedule cannot be deleted");
+        }
+    }
+
+    useEffect(()=>{
+        getAllClassSchedule();
+    }, [selectClass, year, axios]);
 
     return (
         <div className="my-3 pl-2">
-            <select name="" id="" className="my-5 w-full md:w-[unset] px-4 py-2 rounded-md ring-gray-300 ring-1 focus:ring-2 focus:ring-blue-500 duration-300 outline-0" value={selectClass} onChange={(e) => setselectClass(e.target.value)}>
-                <option value="6">Class 6</option>
-                <option value="7">Class 7</option>
-                <option value="8">Class 8</option>
-                <option value="9">Class 9</option>
-                <option value="10">Class 10</option>
+            <select 
+                className="my-5 w-full md:w-[unset] px-4 py-2 rounded-md ring-gray-300 ring-1 focus:ring-2 focus:ring-blue-500 duration-300 outline-0"
+                value={selectClass} 
+                onChange={(e) => setSelectClass(e.target.value)}
+            >
+                {/* <option value="">Select Class</option> */}
+                {[6, 7, 8, 9, 10].map((cls) => (
+                    <option key={cls} value={cls}>Class {cls}</option>
+                ))}
             </select>
-            {selectClass === '6' && (
-                <div className="flex justify-center overflow-x-auto">
-                    <table className="ml-[610px] md:ml-0 text-left w-full border-collapse border border-gray-300">
+
+            <select onChange={(e)=>{setYear(e.target.value)}} className="my-5 mx-5 w-full md:w-[unset] px-4 py-2 rounded-md ring-gray-300 ring-1 focus:ring-2 focus:ring-blue-500 duration-300 outline-0">
+                {
+                    years.map((year, i) => (
+                        <option key={year} value={year}>
+                            {year}
+                        </option>
+                    ))
+                }
+            </select>
+
+            <div className="flex justify-center overflow-x-auto">
+                <form onSubmit={handleSubmit(onSubmit)} className="md:pl-80">
+                    <table className="ml-[610px] md:ml-0 w-full text-center border-collapse border border-gray-300">
                         <thead>
-                            <tr className="bg-gray-100">
-                                <td className="px-16 md:p-3 border border-gray-300 font-bold">Day</td>
-                                <td colSpan={10} className="px-16 md:p-3 border border-gray-300 font-bold">
-                                    Time and subject
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {class_6.map((slot, index) => (
-                                <tr key={index} className={`bg-white hover:bg-blue-50`}>
-                                    <td className="px-16 md:p-3 border border-gray-300">
-                                        {slot.day}
-                                    </td>
-                                    {slot.schedule.map((data, dataIndex) => (
-                                        <td
-                                            key={dataIndex}
-                                            className="px-16 md:p-3 border border-gray-300"
-                                        >
-                                            {data.time} - <h1 className="font-bold">{data.subject}</h1>
-                                        </td>
-                                    ))}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            )}
-            {
-                selectClass === "7" && (
-                    <div className="flex justify-center overflow-x-auto">
-                        <table className="ml-[610px] md:ml-0 text-left w-full border-collapse border border-gray-300">
-                            <thead>
-                                <tr className="bg-gray-100">
-                                    <td className="px-16 md:p-3 border border-gray-300 font-bold">Day</td>
-                                    <td colSpan={10} className="px-16 md:p-3 border border-gray-300 font-bold">
-                                        Time and subject
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {class_7.map((slot, index) => (
-                                    <tr key={index} className={`bg-white hover:bg-blue-50`}>
-                                        <td className="px-16 md:p-3 border border-gray-300">
-                                            {slot.day}
-                                        </td>
-                                        {slot.schedule.map((data, dataIndex) => (
-                                            <td
-                                                key={dataIndex}
-                                                className="px-16 md:p-3 border border-gray-300"
-                                            >
-                                                {data.time} - <h1 className="font-bold">{data.subject}</h1>
-                                            </td>
-                                        ))}
-                                    </tr>
+                            <tr>
+                                <th className="border border-gray-300">Day</th>
+                                {classTime.map((time, index) => (
+                                    <th key={index} className="border border-gray-300">{time}</th>
                                 ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )
-            }
-            {
-                selectClass === "8" && (<div className="flex justify-center overflow-x-auto">
-                    <table className="ml-[610px] md:ml-0 text-left w-full border-collapse border border-gray-300">
-                        <thead>
-                            <tr className="bg-gray-100">
-                                <td className="px-16 md:p-3 border border-gray-300 font-bold">Day</td>
-                                <td colSpan={10} className="px-16 md:p-3 border border-gray-300 font-bold">
-                                    Time and subject
-                                </td>
+                                <th className="border border-gray-300 px-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {class_7.map((slot, index) => (
-                                <tr key={index} className={`bg-white hover:bg-blue-50`}>
-                                    <td className="px-16 md:p-3 border border-gray-300">
-                                        {slot.day}
+                            <tr>
+                                <td className="border p-4">
+                                    <select {...register("day")} className="p-1 border">
+                                        <option value="">Select Day</option>
+                                        {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"].map((day, index) => (
+                                            <option key={index} value={day.toLowerCase()}>{day}</option>
+                                        ))}
+                                    </select>
+                                </td>
+                                {classTime.map((_, index) => (
+                                    <td key={index} className="border p-2">
+                                        <select {...register(`subjects[${index}]`)} className="p-1 border">
+                                            <option value="">Select Subject</option>
+                                            {subjects.map((sub, i) => (
+                                                <option key={i} value={sub.toLowerCase()}>{sub}</option>
+                                            ))}
+                                        </select>
                                     </td>
-                                    {slot.schedule.map((data, dataIndex) => (
-                                        <td
-                                            key={dataIndex}
-                                            className="px-16 md:p-3 border border-gray-300"
-                                        >
-                                            {data.time} - <h1 className="font-bold">{data.subject}</h1>
-                                        </td>
-                                    ))}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>)
-            }
-            {
-                selectClass === "9" && (<div className="flex justify-center overflow-x-auto">
-                    <table className="ml-[610px] md:ml-0 text-left w-full border-collapse border border-gray-300">
-                        <thead>
-                            <tr className="bg-gray-100">
-                                <td className="px-16 md:p-3 border border-gray-300 font-bold">Day</td>
-                                <td colSpan={10} className="px-16 md:p-3 border border-gray-300 font-bold">
-                                    Time and subject
+                                ))}
+                                <td className="px-3">
+                                    <button type="submit" className="bg-green-400 text-white px-3 py-1 rounded-md">Upload</button>
                                 </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {class_7.map((slot, index) => (
-                                <tr key={index} className={`bg-white hover:bg-blue-50`}>
-                                    <td className="px-16 md:p-3 border border-gray-300">
-                                        {slot.day}
-                                    </td>
-                                    {slot.schedule.map((data, dataIndex) => (
-                                        <td
-                                            key={dataIndex}
-                                            className="px-16 md:p-3 border border-gray-300"
-                                        >
-                                            {data.time} - <h1 className="font-bold">{data.subject}</h1>
-                                        </td>
-                                    ))}
-                                </tr>
-                            ))}
                         </tbody>
                     </table>
-                </div>)
-            }
-            {
-                selectClass === "10" && (<div className="flex justify-center overflow-x-auto">
-                    <table className="ml-[610px] md:ml-0 text-left w-full border-collapse border border-gray-300">
-                        <thead>
-                            <tr className="bg-gray-100">
-                                <td className="px-16 md:p-3 border border-gray-300 font-bold">Day</td>
-                                <td colSpan={10} className="px-16 md:p-3 border border-gray-300 font-bold">
-                                    Time and subject
-                                </td>
+                </form>
+            </div>
+
+            <div className="flex flex-col justify-center overflow-x-auto my-8">
+            <h2 className="text-center text-3xl font-semibold my-6 underline">Class {selectClass} Routine - {year}</h2>
+                <table className="ml-[610px] md:ml-0 w-full uppercase text-center border-collapse border border-gray-300">
+                    <thead>
+                        <tr>
+                            <th className="border border-gray-300 py-5">Day</th>
+                            {classTime.map((time, index) => (
+                                <th key={index} className="border border-gray-300 px-5 text-left">{time}</th>
+                            ))}
+                            <th className="border border-gray-300">Action</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {class_7.map((slot, index) => (
-                                <tr key={index} className={`bg-white hover:bg-blue-50`}>
-                                    <td className="px-16 md:p-3 border border-gray-300">
-                                        {slot.day}
-                                    </td>
-                                    {slot.schedule.map((data, dataIndex) => (
-                                        <td
-                                            key={dataIndex}
-                                            className="px-16 md:p-3 border border-gray-300"
-                                        >
-                                            {data.time} - <h1 className="font-bold">{data.subject}</h1>
+                    </thead>
+                    <tbody>
+                        {
+                                data?.classSchedule?.map((item, i)=>(
+                                    <tr key={item}>
+                                        <td className="border border-gray-300 px-3 py-5 font-bold">{item.day}</td>
+                                        {
+                                            item.schedules.map((time, i) => (
+                                                <td key={time} className="border border-gray-300 px-3">{time.subject}</td>
+                                            ))
+                                        }
+                                        <td className="border border-gray-300 px-3">
+                                            <button className="bg-red-500 px-3 py-1 text-white rounded-lg" onClick={()=>deleteDaySchedule(item.day)}>Delete</button>
                                         </td>
-                                    ))}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>)
-            }
+                                    </tr>
+                                ))
+                            
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

@@ -7,6 +7,7 @@ import Quiz from "../components/Quiz/Quiz";
 import Register from "../components/Register/Register";
 import Login from "../components/Login/Login";
 import QuizClasses from "../components/Quiz-Classes/QuizClasses";
+import QuizResult from "../components/Quiz-Classes/QuizResult";
 import AdmissionForm from "../components/AdmissionForm/AdmissionForm";
 import AdmissionInfo from "../components/AdmissionInfo/AdmissionInfo";
 import AdminHome from "../Dashboard/Home/AdminHome";
@@ -36,6 +37,7 @@ import Profile from "../Dashboard/StudenPannel/Profile/Profile";
 import PaymentDetails from "../Dashboard/PaymentDetails/PaymentDetails";
 import Success from "../components/Success/Success";
 import Cancel from "../components/Cancel/Cancel";
+import PostOnlineClass from "../Dashboard/OnlineClass/OnlineClass";
 
 // import ResultDemo from "../Pages/Result/ResultDemo";
 
@@ -69,8 +71,12 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/quiz-classes",
+        path: "quiz/:id",
         element: <QuizClasses />,
+      },
+      {
+        path: "/quiz-result",
+        element: <QuizResult />,
       },
       {
         path: "/admission",
@@ -122,6 +128,7 @@ const router = createBrowserRouter([
         path: "admission",
         element: <Admission />,
       },
+      
       ///Teacher access
       {
         path: "upload-result",
@@ -151,6 +158,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+          path: "class-routine",
+          element: <ClassRoutine />
       },
       {
         path: "upload-class-report",
@@ -192,6 +203,10 @@ const router = createBrowserRouter([
         path: "deshboard",
         element: <Deshboard />,
       },
+      {
+        path:'PostOnlineClass',
+        element: <PostOnlineClass />
+      }
     ],
   },
 ]);

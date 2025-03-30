@@ -62,7 +62,7 @@ const Quiz = () => {
                 </div>
                 <span className="block mt-8">{el.className}</span>
               </div>
-              <Link to="/quiz-classes">
+              <Link to={`class${el.id}`}>
                 <button className="bg-white rounded-lg text-green-500 ring ring-green-400 inline-block px-16 py-2 mt-16 active:scale-95 transition-transform duration-300">
                   Play Quiz
                 </button>

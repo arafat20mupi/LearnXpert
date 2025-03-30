@@ -49,9 +49,8 @@ const Sidebar = ({ open }) => {
   return (
     <div>
       <div
-        className={`overflow-y-scroll fixed top-20 left-0  h-screen pb-20 w-[200px] md:w-[270px] bg-white shadow-lg shadow-gray-200  transition-transform duration-300 ${
-          open ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`overflow-y-scroll fixed top-20 left-0  h-screen pb-20 w-[200px] md:w-[270px] bg-white shadow-lg shadow-gray-200  transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <ul className="flex flex-col space-y-2">
           <li className="flex items-center space-x-2 py-2 px-10 ml-auto"></li>
@@ -65,17 +64,17 @@ const Sidebar = ({ open }) => {
           {/* for admin */}
 
           <div className="flex flex-col">
+            <Link
+              to="/"
+              className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 duration-300"
+            >
+              <div className="text-blue-500 bg-blue-200 p-2 rounded-full">
+                <IoMdHome className="text-2xl" />
+              </div>
+              <span>Back to Home</span>
+            </Link>
             {role === "admin" && (
               <div>
-                <Link
-                  to="/"
-                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 duration-300"
-                >
-                  <div className="text-blue-500 bg-blue-200 p-2 rounded-full">
-                    <IoMdHome className="text-2xl" />
-                  </div>
-                  <span>Home</span>
-                </Link>
                 <Link
                   to="/deshboard/admission"
                   className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 duration-300"
@@ -101,6 +100,12 @@ const Sidebar = ({ open }) => {
                 </div>
                 {adminToggle && (
                   <ul className="select-none text-sm flex flex-col">
+                    <Link
+                      to="/deshboard/PostOnlineClass"
+                      className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
+                    >
+                     Online Class
+                    </Link>
                     <Link
                       to="/deshboard/handle-fees"
                       className="py-2 ml-10 transform cursor-pointer hover:text-gray-700"
@@ -262,15 +267,6 @@ const Sidebar = ({ open }) => {
             {role === "student" && (
               <div>
                 <Link
-                  to="/"
-                  className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 duration-300"
-                >
-                  <div className="text-blue-500 bg-blue-200 p-2 rounded-full">
-                    <IoMdHome className="text-2xl" />
-                  </div>
-                  <span>Home</span>
-                </Link>
-                <Link
                   to="/deshboard/profile"
                   className="flex items-center space-x-2 hover:bg-orange-300 py-2 px-10 duration-300"
                 >
@@ -328,7 +324,7 @@ const Sidebar = ({ open }) => {
             )}
           </div>
 
-          {/* for pre */}
+          {/* for parent */}
           <div className="flex flex-col">
             {role === "parent" && (
               <div>
